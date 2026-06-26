@@ -1,26 +1,26 @@
 import Navbar from "../components/Navbar";
-import HeroCarousel from "../components/HeroCarousel";
-import AboutSection from "../components/AboutSection";
-import ConferenceSection from "../components/ConferenceSection";
-import ProgrammesSection from "../components/ProgrammesSection";
-import MuseumSection from "../components/MuseumSection";
-import HeritageSection from "../components/HeritageSection";
-import JoinSection from "../components/JoinSection";
-import ContactSection from "../components/ContactSection";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Conference from "../components/Conference";
+import Programmes from "../components/Programmes";
+import Museums from "../components/Museums";
+import Heritage from "../components/Heritage";
+import Join from "../components/Join";
+import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
-      <HeroCarousel />
-      <AboutSection />
-      <ConferenceSection />
-      <ProgrammesSection />
-      <MuseumSection />
-      <HeritageSection />
-      <JoinSection />
-      <ContactSection />
+      <Hero />
+      <About />
+      <Conference />
+      <Programmes />
+      <Museums />
+      <Heritage />
+      <Join />
+      <Contact />
       <Footer />
     </main>
   );
