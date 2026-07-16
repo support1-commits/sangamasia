@@ -18,7 +18,7 @@ export default function NetworkMap() {
             A React Leaflet map showing the South Asia network with real interactive markers.
             Pan, zoom, and explore the eight network locations with custom map styling.
           </p>
-          <div className="network-map__status-grid">
+          {/* <div className="network-map__status-grid">
             <div className="network-map__status-item">
               <div className="network-map__status-countries">India</div>
               <span className="status-pill status-pill--green">Active Members</span>
@@ -35,7 +35,7 @@ export default function NetworkMap() {
           <div className="network-map__meta">
             <span>Region area: approx. 5.2 million km²</span>
             <span>Coverage: South Asia</span>
-          </div>
+          </div> */}
         </div>
 
         <div className="network-map__card">
