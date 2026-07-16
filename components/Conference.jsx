@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const agenda = [
   { time: "Day 1", period: "Morning", title: "Opening Keynote & Inaugural Session", desc: "Welcome addresses from network leadership followed by the keynote on South Asian agricultural heritage.", tag: "Keynote" },
@@ -18,7 +19,7 @@ export default function Conference() {
   }, []);
 
   return (
-    <section className="conference" id="conference" ref={ref}>
+    <section className="conference" ref={ref}>
       <div className="conference__pattern" />
       <div className="container">
         <div className="conference__header">
@@ -33,7 +34,7 @@ export default function Conference() {
           </div>
 
           <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`}>
-            <div className="event-badge gold">Landmark Event</div>
+            <div className="tag-badge on-light">Landmark Event</div>
             <h2 className="display-lg on-dark conference__heading" style={{ marginBottom: "1.4rem" }}>
               Where Heritage<br /><em>Finds Its Voice</em>
             </h2>
@@ -46,9 +47,9 @@ export default function Conference() {
               The conference produced a landmark photo exhibition now available through SANGAM.
             </p>
             <div className="conference__btn-row">
-              <a href="#" className="btn btn-outline-white">
+              <a href="#" className="btn btn-outline-light">
                 View CIMA 2023 Exhibition
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <ArrowRight size={16} strokeWidth={2} />
               </a>
             </div>
           </div>

@@ -1,12 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Mail, Globe, MapPin, CheckCircle2, Send, Share2, MessageCircle, Users, Video, Handshake } from "lucide-react";
 
 const socials = [
-  { icon: "IG", name: "Instagram", handle: "@sangam_heritage" },
-  { icon: "X", name: "Twitter / X", handle: "@sangam_network" },
-  { icon: "FB", name: "Facebook", handle: "SANGAM Heritage" },
-  { icon: "YT", name: "YouTube", handle: "SANGAM Talks" },
-  { icon: "in", name: "LinkedIn", handle: "SANGAM Network" },
+  { icon: Share2, name: "Instagram", handle: "@sangam_heritage" },
+  { icon: MessageCircle, name: "Twitter / X", handle: "@sangam_network" },
+  { icon: Users, name: "Facebook", handle: "SANGAM Heritage" },
+  { icon: Video, name: "YouTube", handle: "SANGAM Talks" },
+  { icon: Handshake, name: "LinkedIn", handle: "SANGAM Network" },
 ];
 
 export default function Contact() {
@@ -30,11 +31,11 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact" id="contact" ref={ref}>
+    <section className="contact" ref={ref}>
       <div className="container">
         <div className="contact__inner">
           <div className={`reveal${vis ? " visible" : ""}`}>
-            <div className="event-badge on-light">Contact & Connect</div>
+            <div className="tag-badge on-light">Contact & Connect</div>
             <h2 className="display-lg contact__headline">Reach Out,<br /><em>Say Hello</em></h2>
             <p className="body-md contact__desc">
               Whether you want to partner, contribute, visit a member museum, or simply learn more
@@ -43,15 +44,15 @@ export default function Contact() {
 
             <div className="contact__info-list">
               <div className="contact__info-item">
-                <div className="contact__info-icon">📧</div>
+                <div className="contact__info-icon icon-box terracotta"><Mail size={17} strokeWidth={2} /></div>
                 <div><span className="contact__info-label">Email</span><a href="mailto:info@sangam-heritage.org" className="contact__info-value">info@sangam-heritage.org</a></div>
               </div>
               <div className="contact__info-item">
-                <div className="contact__info-icon">🌐</div>
-                <div><span className="contact__info-label">Website</span><span className="contact__info-value">sangam-heritage.org</span></div>
+                <div className="contact__info-icon icon-box"><Globe size={17} strokeWidth={2} /></div>
+                <div><span className="contact__info-label">Website</span><span className="contact__info-value">sangam.asia</span></div>
               </div>
               <div className="contact__info-item">
-                <div className="contact__info-icon">📍</div>
+                <div className="contact__info-icon icon-box gold"><MapPin size={17} strokeWidth={2} /></div>
                 <div><span className="contact__info-label">Network</span><span className="contact__info-value">South Asia · 8 Countries</span></div>
               </div>
             </div>
@@ -60,7 +61,7 @@ export default function Contact() {
             <div className="contact__socials">
               {socials.map((s, i) => (
                 <a key={i} href="#" className="social-row">
-                  <div className="social-row__icon">{s.icon}</div>
+                  <div className="social-row__icon"><s.icon size={16} strokeWidth={2} /></div>
                   <div><div className="social-row__name">{s.name}</div><div className="social-row__handle">{s.handle}</div></div>
                 </a>
               ))}
@@ -70,7 +71,7 @@ export default function Contact() {
           <div className={`contact__form-box reveal reveal-delay-2${vis ? " visible" : ""}`}>
             {sent ? (
               <div className="form-success">
-                <span className="form-success__icon">🌾</span>
+                <span className="form-success__icon"><CheckCircle2 size={30} strokeWidth={2} /></span>
                 <h3>Message Sent!</h3>
                 <p>Thank you for reaching out. The SANGAM team will be in touch shortly.</p>
               </div>
@@ -105,8 +106,7 @@ export default function Contact() {
                     <textarea name="message" value={form.message} onChange={handleChange} className="form-control form-textarea" placeholder="Tell us about yourself and how you'd like to engage with SANGAM..." rows={5} required />
                   </div>
                   <button type="submit" className="form-submit">
-                    Send Message
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8L14 8M14 8L10 4M14 8L10 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    Send Message <Send size={16} strokeWidth={2} />
                   </button>
                 </form>
               </>

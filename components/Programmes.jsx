@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Images, Mic, Landmark, MapPin, ArrowRight } from "lucide-react";
 
 const festivalDays = [
   { label: "Day 1", date: "Dec 21", items: [
@@ -23,9 +24,9 @@ const festivalDays = [
 ];
 
 const cards = [
-  { icon: "🖼️", badge: "Ongoing", cat: "Exhibition", title: "Pop-Up & Travelling Exhibitions", when: "Year-round", desc: "SANGAM produces travelling and pop-up exhibitions showcasing Agri Museum posters, artefacts, and photographic documentation.", location: "Pan-South Asia" },
-  { icon: "🎙️", badge: "Ongoing", cat: "Talks Series", title: "SANGAM Expert Lecture Series", when: "Throughout the Year", desc: "Curated talks by historians, farmers, curators, and researchers on agricultural heritage topics.", location: "Online + In-Person" },
-  { icon: "🏛️", badge: "Annual", cat: "Conference", title: "CIMA Annual Conference", when: "Annual · Rotating Cities", desc: "The flagship academic and practitioner conference on agricultural heritage and museum studies.", location: "Rotating Venues" },
+  { icon: Images, cls: "gold", badge: "Ongoing", cat: "Exhibition", title: "Pop-Up & Travelling Exhibitions", when: "Year-round", desc: "SANGAM produces travelling and pop-up exhibitions showcasing Agri Museum posters, artefacts, and photographic documentation.", location: "Pan-South Asia" },
+  { icon: Mic, cls: "terracotta", badge: "Ongoing", cat: "Talks Series", title: "SANGAM Expert Lecture Series", when: "Throughout the Year", desc: "Curated talks by historians, farmers, curators, and researchers on agricultural heritage topics.", location: "Online + In-Person" },
+  { icon: Landmark, cls: "", badge: "Annual", cat: "Conference", title: "CIMA Annual Conference", when: "Annual · Rotating Cities", desc: "The flagship academic and practitioner conference on agricultural heritage and museum studies.", location: "Rotating Venues" },
 ];
 
 export default function Programmes() {
@@ -38,10 +39,10 @@ export default function Programmes() {
   }, []);
 
   return (
-    <section className="programmes" id="programmes" ref={ref}>
+    <section className="programmes" ref={ref}>
       <div className="container">
         <div className={`programmes__header reveal${vis ? " visible" : ""}`}>
-          <div className="event-badge on-light">Programmes & Events</div>
+          <div className="tag-badge on-light">Programmes & Events</div>
           <h2 className="display-lg">Heritage in<br /><em>Action</em></h2>
         </div>
 
@@ -49,7 +50,7 @@ export default function Programmes() {
         <div className={`festival-block reveal reveal-delay-1${vis ? " visible" : ""}`}>
           <div className="festival-block__top">
             <div className="festival-block__top-left">
-              <div className="event-badge gold">Upcoming · Featured</div>
+              <div className="tag-badge terracotta">Upcoming · Featured</div>
               <div className="festival-block__title">SANGAM Agriculture Heritage Film Festival</div>
               <div className="festival-block__meta">Kisan Diwas · National Farmers' Day · Multiple Venues, India</div>
             </div>
@@ -78,9 +79,9 @@ export default function Programmes() {
 
         <div className="programmes__grid">
           {cards.map((c, i) => (
-            <article key={i} className={`prog-card reveal reveal-delay-${Math.min(i + 2, 4)}${vis ? " visible" : ""}`}>
+            <article key={i} className={`prog-card card reveal reveal-delay-${Math.min(i + 2, 4)}${vis ? " visible" : ""}`}>
               <div className="prog-card__top">
-                <span className="prog-card__icon-box">{c.icon}</span>
+                <span className={`prog-card__icon-box icon-box ${c.cls}`}><c.icon size={20} strokeWidth={2} /></span>
                 <span className="prog-card__badge">{c.badge}</span>
               </div>
               <div className="prog-card__cat">{c.cat}</div>
@@ -88,10 +89,8 @@ export default function Programmes() {
               <div className="prog-card__when">{c.when}</div>
               <p className="prog-card__desc">{c.desc}</p>
               <div className="prog-card__footer">
-                <span className="prog-card__location">📍 {c.location}</span>
-                <a href="#" className="prog-card__link">Learn more
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </a>
+                <span className="prog-card__location"><MapPin size={13} strokeWidth={2} /> {c.location}</span>
+                <a href="#" className="prog-card__link">Learn more <ArrowRight size={14} strokeWidth={2} /></a>
               </div>
             </article>
           ))}

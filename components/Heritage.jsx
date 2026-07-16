@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { MapPin } from "lucide-react";
 
 const projects = [
   { phase: "Scouting", status: "Active", title: "Bundelkhand Documentation", region: "Madhya Pradesh & Uttar Pradesh", desc: "A comprehensive field documentation project mapping traditional agricultural practices, seed varieties, water harvesting structures, and oral traditions.", outputs: ["Field survey reports","Photo documentation","Oral history recordings","Seed inventory"] },
@@ -17,10 +18,10 @@ export default function Heritage() {
   }, []);
 
   return (
-    <section className="heritage" id="heritage" ref={ref}>
+    <section className="heritage" ref={ref}>
       <div className="container">
         <div className={`heritage__header reveal${vis ? " visible" : ""}`}>
-          <div className="event-badge on-light">Agricultural Heritage</div>
+          <div className="tag-badge on-light">Agricultural Heritage</div>
           <h2 className="display-lg">Documenting the<br /><em>Land's Memory</em></h2>
           <p className="body-md" style={{ maxWidth: 580, marginTop: "1rem" }}>
             Through scouting expeditions, fieldwork, and curatorial projects, SANGAM is building
@@ -47,14 +48,14 @@ export default function Heritage() {
 
         <div className="heritage__projects">
           {projects.map((p, i) => (
-            <article key={i} className={`heritage-card reveal reveal-delay-${i + 1}${vis ? " visible" : ""}`}>
+            <article key={i} className={`heritage-card card reveal reveal-delay-${i + 1}${vis ? " visible" : ""}`}>
               <div className="heritage-card__top">
                 <span className="heritage-card__phase">{p.phase}</span>
                 <span className="heritage-card__status"><span className="heritage-card__status-dot" />{p.status}</span>
               </div>
               <div className="heritage-card__body">
                 <h3 className="heritage-card__title">{p.title}</h3>
-                <div className="heritage-card__region">📍 {p.region}</div>
+                <div className="heritage-card__region"><MapPin size={13} strokeWidth={2} /> {p.region}</div>
                 <p className="heritage-card__desc">{p.desc}</p>
                 <div className="heritage-card__outputs-label">Outputs</div>
                 <ul className="heritage-card__outputs">{p.outputs.map((o, j) => <li key={j}>{o}</li>)}</ul>

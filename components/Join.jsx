@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { GraduationCap, Microscope, Handshake, Wheat } from "lucide-react";
 
 const cards = [
-  { icon: "🎓", type: "Internship", tagline: "Learn by Doing", desc: "Short-term placements for students to work directly with SANGAM's documentation, exhibitions, and museum programmes.", details: ["Hands-on field experience","Museum curation support","Research assistance","Mentorship"], featured: false },
-  { icon: "🔬", type: "Fellowship", tagline: "Deep Research, Lasting Impact", desc: "Structured fellowships for researchers to undertake substantive projects on South Asian agricultural heritage.", details: ["Funded research projects","Access to member museums","Publication support","Network connections"], featured: true },
-  { icon: "🤝", type: "Partner", tagline: "Collaborate & Grow", desc: "Institutional partnerships for universities, NGOs, and cultural organisations that share SANGAM's mission.", details: ["Co-branded programmes","Joint exhibitions","Shared research access","Network visibility"], featured: false },
-  { icon: "🌾", type: "Member", tagline: "Join the Network", desc: "Individual and institutional membership open to museums, scholars, and farmers committed to agricultural heritage.", details: ["Full network access","Member events & talks","Voting rights","Collective advocacy"], featured: false },
+  { icon: GraduationCap, cls: "terracotta", type: "Internship", tagline: "Learn by Doing", desc: "Short-term placements for students to work directly with SANGAM's documentation, exhibitions, and museum programmes.", details: ["Hands-on field experience","Museum curation support","Research assistance","Mentorship"], featured: false },
+  { icon: Microscope, cls: "gold", type: "Fellowship", tagline: "Deep Research, Lasting Impact", desc: "Structured fellowships for researchers to undertake substantive projects on South Asian agricultural heritage.", details: ["Funded research projects","Access to member museums","Publication support","Network connections"], featured: true },
+  { icon: Handshake, cls: "", type: "Partner", tagline: "Collaborate & Grow", desc: "Institutional partnerships for universities, NGOs, and cultural organisations that share SANGAM's mission.", details: ["Co-branded programmes","Joint exhibitions","Shared research access","Network visibility"], featured: false },
+  { icon: Wheat, cls: "terracotta", type: "Member", tagline: "Join the Network", desc: "Individual and institutional membership open to museums, scholars, and farmers committed to agricultural heritage.", details: ["Full network access","Member events & talks","Voting rights","Collective advocacy"], featured: false },
 ];
 
 export default function Join() {
@@ -18,10 +19,10 @@ export default function Join() {
   }, []);
 
   return (
-    <section className="join" id="join" ref={ref}>
+    <section className="join" ref={ref}>
       <div className="container">
         <div className={`join__header reveal${vis ? " visible" : ""}`}>
-          <div className="event-badge on-light">Join SANGAM</div>
+          <div className="tag-badge on-light">Join SANGAM</div>
           <h2 className="display-lg">Be Part of Something<br /><em>Rooted & Lasting</em></h2>
           <p className="body-md" style={{ marginTop: "1rem" }}>
             Whether you're a student, researcher, institution, or passionate individual —
@@ -31,8 +32,8 @@ export default function Join() {
 
         <div className="join__grid">
           {cards.map((c, i) => (
-            <article key={i} className={`join-card${c.featured ? " featured" : ""} reveal reveal-delay-${i + 1}${vis ? " visible" : ""}`}>
-              <div className="join-card__icon-box">{c.icon}</div>
+            <article key={i} className={`join-card card${c.featured ? " featured" : ""} reveal reveal-delay-${i + 1}${vis ? " visible" : ""}`}>
+              <div className={`join-card__icon-box icon-box ${c.cls}`}><c.icon size={22} strokeWidth={2} /></div>
               <div className="join-card__type">{c.type}</div>
               <div className="join-card__tagline">{c.tagline}</div>
               <p className="join-card__desc">{c.desc}</p>

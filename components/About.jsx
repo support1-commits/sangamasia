@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Globe, Landmark, BookOpen } from "lucide-react";
 
 const listItems = [
-  { icon: "🌍", title: "8 Nations, One Network", desc: "India to the Maldives — connected by shared agricultural roots." },
-  { icon: "🏛️", title: "Living Museums", desc: "Institutions that practice heritage, not just display it." },
-  { icon: "📖", title: "Oral Histories", desc: "Recording the memory of farming communities before it fades." },
+  { icon: Globe, cls: "terracotta", title: "8 Nations, One Network", desc: "India to the Maldives — connected by shared agricultural roots." },
+  { icon: Landmark, cls: "", title: "Living Museums", desc: "Institutions that practice heritage, not just display it." },
+  { icon: BookOpen, cls: "gold", title: "Oral Histories", desc: "Recording the memory of farming communities before it fades." },
 ];
 
 export default function About() {
@@ -17,7 +18,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="about" id="about" ref={ref}>
+    <section className="about" ref={ref}>
       <div className="container">
         <div className="about__inner">
           <div className={`about__visual reveal${vis ? " visible" : ""}`}>
@@ -32,7 +33,7 @@ export default function About() {
           </div>
 
           <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`}>
-            <div className="event-badge on-light">About SANGAM</div>
+            <div className="tag-badge on-light">About SANGAM</div>
             <h2 className="display-lg about__headline">
               Rooted in Soil,<br /><em>Spanning Nations</em>
             </h2>
@@ -45,7 +46,9 @@ export default function About() {
             <div className="about__list">
               {listItems.map((item, i) => (
                 <div className="about__list-item" key={i}>
-                  <div className="about__list-icon">{item.icon}</div>
+                  <div className={`about__list-icon icon-box ${item.cls}`}>
+                    <item.icon size={20} strokeWidth={2} />
+                  </div>
                   <div>
                     <h4>{item.title}</h4>
                     <p>{item.desc}</p>
