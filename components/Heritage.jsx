@@ -3,9 +3,45 @@ import { useEffect, useRef, useState } from "react";
 import { MapPin } from "lucide-react";
 
 const projects = [
-  { phase: "Scouting", status: "Active", title: "Bundelkhand Documentation", region: "Madhya Pradesh & Uttar Pradesh", desc: "A comprehensive field documentation project mapping traditional agricultural practices, seed varieties, water harvesting structures, and oral traditions.", outputs: ["Field survey reports","Photo documentation","Oral history recordings","Seed inventory"] },
-  { phase: "Scouting", status: "Active", title: "Greater NOIDA Documentation", region: "Uttar Pradesh", desc: "Documentation of the rapidly vanishing farming traditions in the peri-urban landscape of Greater NOIDA before urbanisation erases them.", outputs: ["Land-use mapping","Tool documentation","Farmer interviews","Visual archive"] },
-  { phase: "Curation", status: "Available", title: "CIMA 2023 Photo Exhibition", region: "Pan–South Asia", desc: "A curated photographic exhibition drawn from SANGAM's documentation work and member museum collections, now available for travelling exhibition.", outputs: ["Exhibition catalogue","Print & digital formats","Travelling edition","Educational materials"] },
+  {
+    phase: "Scouting", status: "Active",
+    title: "Bundelkhand Documentation",
+    region: "Madhya Pradesh & Uttar Pradesh",
+    desc: "The Bundelkhand region is one of India's most historically significant agricultural zones -- a region of extraordinary cultural depth and farming heritage stretching back thousands of years, and also one of the most under-documented in terms of agricultural heritage.",
+    outputs: [
+      "Recording tool collections of farmers and village artisans across Satna, Panna, Tikamgarh and Chhatarpur districts",
+      "Documenting traditional rice, millets, pulses and oil seed varieties still conserved by farmers",
+      "Collecting oral histories on seasonal practices, water conservation systems and ecological knowledge",
+      "Identifying potential network members from the Baghelkhand sub-region, building on the work of Babulal Dahiya",
+      "Documenting Bagheli folk traditions, songs, proverbs, stories and rituals connected to the agricultural calendar",
+    ],
+    note: "Conducted in collaboration with local researchers, folk scholars and community organisations active in the region. Documentation photographs and field recordings from Bundelkhand to be added -- photo gallery placeholder.",
+  },
+  {
+    phase: "Scouting", status: "Ongoing through 2026",
+    title: "Greater NOIDA Documentation",
+    region: "Western Uttar Pradesh -- Baghpat, Meerut, Muzaffarnagar, Hapur, Bulandshahr",
+    desc: "The Greater NOIDA and western Uttar Pradesh region is one of India's most intensively farmed areas, yet its traditional agricultural heritage has rarely been documented.",
+    outputs: [
+      "Traditional sugarcane farming practices and heritage -- one of India's oldest sugarcane-growing regions",
+      "Seed varieties of wheat, rice and millets still maintained by village communities",
+      "Traditional agricultural tools of the alluvial Gangetic plain -- ploughs, irrigation implements, harvesting tools",
+      "Community memory of pre-Green Revolution farming -- what crops grew, how, and what was lost",
+      "Women's agricultural knowledge of seed saving, kitchen gardens and traditional food processing",
+    ],
+    note: "Field documentation is ongoing and will continue through 2026, with findings progressively added to the SANGAM heritage archive.",
+  },
+  {
+    phase: "Curation", status: "Available",
+    title: "CIMA 2023 Photo Exhibition",
+    region: "Pan-South Asia",
+    desc: "SANGAM has curated a photographic exhibition drawn from the CIMA 2023 conference, documenting the landmark gathering through images that capture the people, places, objects, conversations and moments that gave birth to the SANGAM network.",
+    outputs: [
+      "Available to view online",
+      "Available as a travelling physical exhibition for institutions and public spaces",
+    ],
+    note: "Photos will be updated.",
+  },
 ];
 
 export default function Heritage() {
@@ -21,11 +57,18 @@ export default function Heritage() {
     <section className="heritage" ref={ref}>
       <div className="container">
         <div className={`heritage__header reveal${vis ? " visible" : ""}`}>
-          <div className="tag-badge on-light">Agricultural Heritage</div>
+          <div className="tag-badge on-light">Agricultural Heritage of South Asia</div>
           <h2 className="display-lg">Documenting the<br /><em>Land's Memory</em></h2>
-          <p className="body-md" style={{ maxWidth: 580, marginTop: "1rem" }}>
-            Through scouting expeditions, fieldwork, and curatorial projects, SANGAM is building
-            a permanent archive of South Asia's agricultural heritage — region by region, season by season.
+          <p className="body-md" style={{ maxWidth: 680, marginTop: "1rem" }}>
+            South Asia is one of the world's great agricultural civilisations. For over ten thousand
+            years, farmers of this region have cultivated thousands of crop varieties, developed
+            sophisticated irrigation and water management systems, created intricate tools adapted
+            to every terrain and season, and accumulated an enormous body of ecological knowledge
+            passed on through practice, story, ritual and song. This heritage is living -- it exists
+            today in the seed varieties farmers quietly conserve in their homes, the tools stored in
+            village sheds, the songs sung during harvest, and the knowledge of which variety to
+            plant when the monsoon arrives late. SANGAM exists to document and celebrate this
+            heritage before it disappears.
           </p>
         </div>
 
@@ -34,7 +77,7 @@ export default function Heritage() {
             <div className="heritage__phase-num">01</div>
             <div className="heritage__phase-body">
               <h3>Scouting Agricultural Heritage</h3>
-              <p>Field teams travel to regions of high heritage density to identify, photograph, and record agricultural practices, artefacts, and oral traditions at risk of being lost.</p>
+              <p>SANGAM conducts active field documentation of living agricultural heritage across South Asia, sending research teams into farming communities to record oral histories, document tools and practices, identify seed conservators and build connections with potential network members.</p>
             </div>
           </div>
           <div className="heritage__phase">
@@ -57,8 +100,9 @@ export default function Heritage() {
                 <h3 className="heritage-card__title">{p.title}</h3>
                 <div className="heritage-card__region"><MapPin size={13} strokeWidth={2} /> {p.region}</div>
                 <p className="heritage-card__desc">{p.desc}</p>
-                <div className="heritage-card__outputs-label">Outputs</div>
+                <div className="heritage-card__outputs-label">{p.phase === "Curation" ? "Available As" : "Documentation Focus"}</div>
                 <ul className="heritage-card__outputs">{p.outputs.map((o, j) => <li key={j}>{o}</li>)}</ul>
+                <p className="body-sm" style={{ marginTop: "1.1rem", fontStyle: "italic" }}>{p.note}</p>
               </div>
             </article>
           ))}

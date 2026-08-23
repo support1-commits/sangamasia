@@ -1,32 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Images, Mic, Landmark, MapPin, ArrowRight } from "lucide-react";
+import { Images, Mic, Landmark, MapPin, ArrowRight, ExternalLink, Calendar } from "lucide-react";
 
-const festivalDays = [
-  { label: "Day 1", date: "Dec 21", items: [
-    { time: "9:00", text: "Inaugural ceremony & welcome address" },
-    { time: "11:00", text: "Documentary screenings — Rice Heritage" },
-    { time: "2:00", text: "Farmer storytelling circle" },
-    { time: "5:00", text: "Folk music performance" },
-  ]},
-  { label: "Day 2", date: "Dec 22", items: [
-    { time: "9:30", text: "Heritage documentation panel" },
-    { time: "12:00", text: "Short film competition screenings" },
-    { time: "3:00", text: "Museum curator roundtable" },
-    { time: "6:00", text: "Evening cultural showcase" },
-  ]},
-  { label: "Day 3", date: "Dec 23", items: [
-    { time: "10:00", text: "Closing documentary premiere" },
-    { time: "1:00", text: "Awards & recognition ceremony" },
-    { time: "3:30", text: "Closing remarks & next steps" },
-    { time: "5:00", text: "Farewell harvest feast" },
-  ]},
-];
-
-const cards = [
-  { icon: Images, cls: "gold", badge: "Ongoing", cat: "Exhibition", title: "Pop-Up & Travelling Exhibitions", when: "Year-round", desc: "SANGAM produces travelling and pop-up exhibitions showcasing Agri Museum posters, artefacts, and photographic documentation.", location: "Pan-South Asia" },
-  { icon: Mic, cls: "terracotta", badge: "Ongoing", cat: "Talks Series", title: "SANGAM Expert Lecture Series", when: "Throughout the Year", desc: "Curated talks by historians, farmers, curators, and researchers on agricultural heritage topics.", location: "Online + In-Person" },
-  { icon: Landmark, cls: "", badge: "Annual", cat: "Conference", title: "CIMA Annual Conference", when: "Annual · Rotating Cities", desc: "The flagship academic and practitioner conference on agricultural heritage and museum studies.", location: "Rotating Venues" },
+const talks = [
+  { title: "Virasat -- Common Property Resources: Heritage of India's Pastoral Lands, Pastoralists and Traditions", date: "11 September 2023, Monday, 3:00 PM", speakers: "Dr. P K Biswas, Vice Chancellor, Jagran Lakecity University, Bhopal in conversation with Mr. Vijay Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", link: "https://youtu.be/W-YfhWYCUD8?si=CET6HzQfqALZrAqt" },
+  { title: "Chunauti -- Saving Soil for the Future: Lessons from Traditions", date: "7 July 2023, Friday, 3:00 PM", speakers: "Dr. Sultan Ahmed Ismail, Member, State Planning Commission, Government of Tamil Nadu, President of Gandhi Ashram, Thiruchengode in conversation with Mr. Surajit Sarkar, Vice President, AIMA", link: "https://youtu.be/rF20y2uK6qo?si=jOtYq_OLLEVaPBPR" },
+  { title: "Virasat -- Pre-Canal Agriculture in Punjab: Crops, Traditions and Practices", date: "21 September 2023, Thursday, 3:00 PM", speakers: "Mr. Umendra Dutt, Founder, Kheti Virasat Mission, Faridkot, Punjab in conversation with Ms. Nerupama Y Modwel, Director, Intangible Heritage Division, INTACH, New Delhi", link: "https://youtu.be/3WJEzAs_YVo?si=jWpe3HtM5SDsRYMV" },
 ];
 
 export default function Programmes() {
@@ -44,56 +23,139 @@ export default function Programmes() {
         <div className={`programmes__header reveal${vis ? " visible" : ""}`}>
           <div className="tag-badge on-light">Programmes & Events</div>
           <h2 className="display-lg">Heritage in<br /><em>Action</em></h2>
+          <p className="body-md" style={{ marginTop: "1rem", maxWidth: 640 }}>
+            SANGAM is hosting several events and programmes to expand its network, reaching out to
+            people from cities to the hinterland.
+          </p>
         </div>
 
-        {/* Festival schedule block */}
+        {/* Upcoming: Film Festival */}
         <div className={`festival-block reveal reveal-delay-1${vis ? " visible" : ""}`}>
           <div className="festival-block__top">
             <div className="festival-block__top-left">
-              <div className="tag-badge terracotta">Upcoming · Featured</div>
+              <div className="tag-badge terracotta">Upcoming Event</div>
               <div className="festival-block__title">SANGAM Agriculture Heritage Film Festival</div>
-              <div className="festival-block__meta">Kisan Diwas · National Farmers' Day · Multiple Venues, India</div>
+              <div className="festival-block__meta">
+                To celebrate National Farmers' Day (Kisan Diwas), 23 December 2026 -- at multiple
+                venues across India (venue names to be updated)
+              </div>
             </div>
             <div className="festival-block__date-box">
-              <div className="festival-block__date-day">21</div>
+              <div className="festival-block__date-day">21-23</div>
               <div className="festival-block__date-month">Dec 2026</div>
             </div>
           </div>
-          <div className="festival-block__days">
-            {festivalDays.map((day, i) => (
-              <div className="festival-day" key={i}>
-                <div className="festival-day__label">{day.label}</div>
-                <div className="festival-day__date">{day.date}, 2026</div>
-                <div className="festival-day__items">
-                  {day.items.map((item, j) => (
-                    <div className="festival-day__item" key={j}>
-                      <span className="festival-day__item-time">{item.time}</span>
-                      <span className="festival-day__item-text">{item.text}</span>
-                    </div>
-                  ))}
-                </div>
+          <p className="body-md" style={{ marginBottom: "1.2rem" }}>
+            SANGAM is organising a three-day agricultural film festival across India, welcoming
+            filmmakers, farmers, individuals and documentary makers to present their stories
+            through films focused on the rich heritage of farming, villages, folklore, folk musical
+            performance, cultural shows, harvest festivals and other events related to agriculture
+            -- as an effort to conserve and preserve this beautiful heritage. This festival is a way
+            to engage with the community of farmers, museum curators, filmmakers, activists and
+            individuals working to preserve agricultural heritage.
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", color: "var(--muted-blue)", fontSize: "0.85rem", fontWeight: 600 }}>
+            <Calendar size={15} strokeWidth={2} /> Schedule -- TBD (to be declared)
+          </div>
+        </div>
+
+        {/* Exhibitions */}
+        <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`} style={{ marginBottom: "3rem" }}>
+          <div className="tag-badge on-light"><Images size={13} /> Exhibitions</div>
+          <p className="body-md" style={{ maxWidth: 720, marginBottom: "1.8rem" }}>
+            SANGAM organises pan-South Asia pop-up and travelling year-round exhibitions that
+            showcase Agri Museum posters, artefacts, handicrafts and photographic documentation.
+            Exhibitions take place at different venues over the course of a year and are open to
+            everyone -- connecting villages and small farming communities to a larger audience,
+            where every piece of art and artefact helps revive dying agricultural heritage.
+          </p>
+          <div className="programmes__grid" style={{ marginBottom: "2rem" }}>
+            <article className="prog-card card">
+              <div className="prog-card__top">
+                <span className="prog-card__icon-box icon-box gold"><Images size={20} strokeWidth={2} /></span>
+                <span className="prog-card__badge">Ongoing</span>
               </div>
+              <div className="prog-card__cat">Exhibition</div>
+              <h3 className="prog-card__title">Pop-Up Exhibitions</h3>
+              <p className="prog-card__desc">
+                Short-duration, high-impact displays set up quickly in public spaces like university
+                campuses, community centres and cultural festivals -- bringing the collections of
+                SANGAM member museums directly to communities that may never visit a museum in
+                person. Each features high-quality printed panels, seed displays, tool replicas and
+                storytelling materials sourced from member museums, designed to spark curiosity and
+                connect urban audiences with agricultural heritage.
+              </p>
+            </article>
+            <article className="prog-card card">
+              <div className="prog-card__top">
+                <span className="prog-card__icon-box icon-box terracotta"><Images size={20} strokeWidth={2} /></span>
+                <span className="prog-card__badge">Ongoing</span>
+              </div>
+              <div className="prog-card__cat">Exhibition</div>
+              <h3 className="prog-card__title">Travelling Exhibitions</h3>
+              <p className="prog-card__desc">
+                Larger, multi-venue exhibitions that travel across cities and regions over weeks or
+                months, allowing SANGAM to build sustained public engagement with agricultural
+                heritage themes across multiple locations.
+              </p>
+            </article>
+          </div>
+          <div style={{ padding: "1.6rem", border: "1px dashed var(--border-brown)", borderRadius: "var(--radius-lg)", textAlign: "center" }}>
+            <p className="body-sm">
+              Photo gallery placeholder -- around 30-35 photographs from the Agri-Heritage exhibition
+              held at Shoolini during CIMA 2023 will be posted here, with further exhibitions added
+              as they take place.
+            </p>
+          </div>
+        </div>
+
+        {/* SANGAM Talks */}
+        <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`} style={{ marginBottom: "3.5rem" }}>
+          <div className="tag-badge on-light"><Mic size={13} /> SANGAM Expert Lecture Series</div>
+          <p className="body-md" style={{ maxWidth: 720, marginBottom: "1.8rem" }}>
+            A podcast series of informative lectures and curated talks by historians, farmers,
+            curators, researchers and academicians on topics related to oral history and
+            agricultural heritage -- an effort to bring lived knowledge systems into the public
+            domain. Conducted both online and in-person, with an expert speaker invited to talk in
+            detail on each topic. Six SANGAM Talks are available so far, including these pre-conference talks:
+          </p>
+          <div className="heritage__projects">
+            {talks.map((t, i) => (
+              <article className="heritage-card card" key={i}>
+                <div className="heritage-card__top" style={{ marginBottom: "0.9rem" }}>
+                  <span className="heritage-card__phase">SANGAM Talk</span>
+                </div>
+                <h3 className="heritage-card__title" style={{ fontSize: "1.05rem" }}>{t.title}</h3>
+                <p className="body-sm" style={{ marginBottom: "0.6rem" }}>{t.date}</p>
+                <p className="heritage-card__desc">{t.speakers}</p>
+                <a href={t.link} target="_blank" rel="noopener noreferrer" className="prog-card__link">
+                  Watch <ExternalLink size={13} strokeWidth={2} />
+                </a>
+              </article>
             ))}
           </div>
         </div>
 
-        <div className="programmes__grid">
-          {cards.map((c, i) => (
-            <article key={i} className={`prog-card card reveal reveal-delay-${Math.min(i + 2, 4)}${vis ? " visible" : ""}`}>
-              <div className="prog-card__top">
-                <span className={`prog-card__icon-box icon-box ${c.cls}`}><c.icon size={20} strokeWidth={2} /></span>
-                <span className="prog-card__badge">{c.badge}</span>
-              </div>
-              <div className="prog-card__cat">{c.cat}</div>
-              <h3 className="prog-card__title">{c.title}</h3>
-              <div className="prog-card__when">{c.when}</div>
-              <p className="prog-card__desc">{c.desc}</p>
-              <div className="prog-card__footer">
-                <span className="prog-card__location"><MapPin size={13} strokeWidth={2} /> {c.location}</span>
-                <a href="#" className="prog-card__link">Learn more <ArrowRight size={14} strokeWidth={2} /></a>
-              </div>
-            </article>
-          ))}
+        {/* Conference summary card */}
+        <div className={`programmes__grid reveal reveal-delay-3${vis ? " visible" : ""}`}>
+          <article className="prog-card card">
+            <div className="prog-card__top">
+              <span className="prog-card__icon-box icon-box"><Landmark size={20} strokeWidth={2} /></span>
+              <span className="prog-card__badge">Foundational</span>
+            </div>
+            <div className="prog-card__cat">Conference</div>
+            <h3 className="prog-card__title">CIMA Conference</h3>
+            <p className="prog-card__desc">
+              CIMA was the foundational ground of the SANGAM network -- a well-arranged event that
+              brought together academicians, historians, practitioners, speakers, activists and
+              international museum experts to spread knowledge on agricultural heritage and museum
+              studies.
+            </p>
+            <div className="prog-card__footer">
+              <span className="prog-card__location"><MapPin size={13} strokeWidth={2} /> Solan & Ludhiana, India</span>
+              <a href="/conference" className="prog-card__link">Full conference details <ArrowRight size={14} strokeWidth={2} /></a>
+            </div>
+          </article>
         </div>
       </div>
     </section>

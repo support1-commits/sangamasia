@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import CookiesBanner from "../components/CookiesBanner";
 
 export const metadata = {
   title: "SANGAM — South Asian Agricultural Heritage Network",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <CookiesBanner />
       </body>
     </html>
   );

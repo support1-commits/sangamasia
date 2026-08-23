@@ -13,6 +13,7 @@ const links = [
   { label: "Heritage", href: "/heritage" },
   { label: "Join", href: "/join" },
   { label: "Contact", href: "/contact" },
+  { label: "Connect", href: "/connect" },
 ];
 
 export default function Navbar() {
@@ -35,7 +36,7 @@ export default function Navbar() {
           </div>
           <div className="navbar__brand-text">
             <span className="navbar__brand-name">SANGAM</span>
-            <span className="navbar__brand-sub">Heritage Network</span>
+            <span className="navbar__brand-sub">Agriculture Heritage Network</span>
           </div>
         </Link>
 

@@ -22,7 +22,8 @@ const quickLinks = [
   { href: "/museums", icon: Building2, title: "Museums", desc: "Meet the four member museums preserving farming heritage." },
   { href: "/heritage", icon: Archive, title: "Heritage Projects", desc: "Documentation work underway across the subcontinent." },
   { href: "/join", icon: Handshake, title: "Join SANGAM", desc: "Internships, fellowships, partnerships, and membership." },
-  { href: "/contact", icon: Mail, title: "Contact", desc: "Reach the SANGAM team or follow us online." },
+  { href: "/contact", icon: Mail, title: "Contact", desc: "Reach the SANGAM team or ask a question." },
+  { href: "/connect", icon: Mail, title: "Connect", desc: "Follow SANGAM across our social media channels." },
 ];
 
 const galleryItems = [

@@ -38,9 +38,33 @@ export default function About() {
               Rooted in Soil,<br /><em>Spanning Nations</em>
             </h2>
             <p className="body-lg about__desc">
-              SANGAM is the South Asian Network of Agricultural Museums and allied institutions.
-              It brings together museums, scholars, farmers, and cultural stewards to safeguard
-              the living agricultural heritage of South Asia — before it fades from memory.
+              SANGAM — Agriculture Heritage Network — is a pan-South Asian network
+              of SAARC countries that unites agricultural museums, farmers, historians, scholars
+              and individuals across the subcontinent to preserve the living heritage of agriculture
+              and farming traditions. The network spans the SAARC nations of India, Bangladesh,
+              Afghanistan, Pakistan, Nepal, Bhutan, Maldives and Sri Lanka — a region connected by
+              shared heritage and cultural values. SANGAM is an effort to bring this heritage
+              together on one platform.
+            </p>
+            <p className="body-md about__desc">
+              South Asia is home to some of the world's oldest and most diverse agricultural
+              traditions. For over ten thousand years, farmers of this region have cultivated
+              thousands of crop varieties, developed sophisticated irrigation systems, created
+              intricate tools adapted to every terrain and season, and passed on an enormous body
+              of ecological knowledge through practice, song, story and festival. This heritage is
+              not merely historical — it is living, held today in the seed varieties elderly
+              farmers quietly conserve, the tools stored in village sheds and the songs sung during
+              harvest.
+            </p>
+            <p className="body-md about__desc">
+              Through SANGAM we are building a community of individuals and organisations working
+              to conserve this living tradition through museums and oral history. At present we
+              have more than 100 museums across these nations preserving age-old traditions, tools,
+              artifacts, rituals and agricultural histories — documenting, celebrating and
+              connecting this heritage to present knowledge systems before it is lost forever. The
+              key partners of this network are museums, educational institutions and individuals,
+              and SANGAM will host a number of events and programmes that bring these nations
+              together on one platform for a larger audience.
             </p>
 
             <div className="about__list">
@@ -60,8 +84,8 @@ export default function About() {
             <div className="about__aima">
               <div className="about__aima-badge">AIMA</div>
               <div>
-                <strong>Association of Indian Museums of Agriculture</strong>
-                <p>SANGAM works in partnership with AIMA to foster inter-institutional collaboration and professional standards across the subcontinent.</p>
+                <strong>International Association of Agricultural Museums</strong>
+                <p>AIMA is a forum for organisations dedicated to promoting interest in the impact of agriculture on human society through the ages. SANGAM is South Asia's representative voice within AIMA, the global body connecting agricultural museums and heritage institutions across the world.</p>
               </div>
             </div>
           </div>
