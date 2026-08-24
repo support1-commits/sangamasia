@@ -1065,3 +1065,6 @@ a { color: inherit; }
   .agenda__day-toggle > svg,
   .agenda__day-panel { transition: none; }
 }
+section.conference .reveal {
+  opacity: 1;
+}
