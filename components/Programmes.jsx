@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Images, Mic, Landmark, MapPin, ArrowRight, ExternalLink, Calendar } from "lucide-react";
+import { useSiteLanguage } from "../lib/siteLanguage";
 
 const talks = [
   { title: "Virasat -- Common Property Resources: Heritage of India's Pastoral Lands, Pastoralists and Traditions", date: "11 September 2023, Monday, 3:00 PM", speakers: "Dr. P K Biswas, Vice Chancellor, Jagran Lakecity University, Bhopal in conversation with Mr. Vijay Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", link: "https://youtu.be/W-YfhWYCUD8?si=CET6HzQfqALZrAqt" },
@@ -11,6 +12,12 @@ const talks = [
 export default function Programmes() {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
+  const locale = useSiteLanguage();
+  const copy = {
+    en: { badge: "Programmes & Events", title: ["Heritage in", "Action"], intro: "SANGAM is hosting several events and programmes to expand its network, reaching out to people from cities to the hinterland.", upcoming: "Upcoming Event", filmTitle: "SANGAM Agriculture Heritage Film Festival", festivalText: "SANGAM is organising a three-day agricultural film festival across India...", exhibitions: "Exhibitions", talks: "SANGAM Expert Lecture Series" },
+    hi: { badge: "कार्यक्रम और कार्यक्रम", title: ["विरासत", "क्रिया में"], intro: "संगम अपनी नेटवर्क का विस्तार करने के लिए कई कार्यक्रम और आयोजन आयोजित कर रहा है, शहरों से लेकर ग्रामीण क्षेत्रों तक लोगों तक पहुँच रहा है।", upcoming: "आगामी कार्यक्रम", filmTitle: "संगम कृषि विरासत फिल्म फेस्टिवल", festivalText: "संगम भारत भर में तीन दिवसीय कृषि फिल्म फेस्टिवल आयोजित कर रहा है...", exhibitions: "प्रदर्शनी", talks: "संगम विशेषज्ञ व्याख्यान श्रृंखला" },
+    bn: { badge: "প্রোগ্রাম ও ইভেন্ট", title: ["ঐতিহ্য", "ক্রিয়ায়"], intro: "সাংগম তার নেটওয়ার্ক বাড়াতে বিভিন্ন অনুষ্ঠান ও প্রোগ্রাম আয়োজন করছে, শহর থেকে পল্লী পর্যন্ত মানুষকে পৌঁছাচ্ছে।", upcoming: "আসন্ন ইভেন্ট", filmTitle: "সাংগম কৃষি ঐতিহ্য চলচ্চিত্র উৎসব", festivalText: "সাংগম ভারতজুড়ে তিনদিনের কৃষি চলচ্চিত্র উৎসব আয়োজন করছে...", exhibitions: "এক্সিবিশন", talks: "সাংগম বিশেষজ্ঞ বক্তৃতা সিরিজ" },
+  }[locale] || { badge: "Programmes & Events", title: ["Heritage in", "Action"], intro: "SANGAM is hosting several events and programmes to expand its network, reaching out to people from cities to the hinterland.", upcoming: "Upcoming Event", filmTitle: "SANGAM Agriculture Heritage Film Festival", festivalText: "SANGAM is organising a three-day agricultural film festival across India...", exhibitions: "Exhibitions", talks: "SANGAM Expert Lecture Series" };
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.08 });
     if (ref.current) obs.observe(ref.current);
@@ -21,11 +28,10 @@ export default function Programmes() {
     <section className="programmes" ref={ref}>
       <div className="container">
         <div className={`programmes__header reveal${vis ? " visible" : ""}`}>
-          <div className="tag-badge on-light">Programmes & Events</div>
-          <h2 className="display-lg">Heritage in<br /><em>Action</em></h2>
+          <div className="tag-badge on-light">{copy.badge}</div>
+          <h2 className="display-lg">{copy.title[0]}<br /><em>{copy.title[1]}</em></h2>
           <p className="body-md" style={{ marginTop: "1rem", maxWidth: 640 }}>
-            SANGAM is hosting several events and programmes to expand its network, reaching out to
-            people from cities to the hinterland.
+            {copy.intro}
           </p>
         </div>
 
@@ -33,8 +39,8 @@ export default function Programmes() {
         <div className={`festival-block reveal reveal-delay-1${vis ? " visible" : ""}`}>
           <div className="festival-block__top">
             <div className="festival-block__top-left">
-              <div className="tag-badge terracotta">Upcoming Event</div>
-              <div className="festival-block__title">SANGAM Agriculture Heritage Film Festival</div>
+              <div className="tag-badge terracotta">{copy.upcoming}</div>
+              <div className="festival-block__title">{copy.filmTitle}</div>
               <div className="festival-block__meta">
                 To celebrate National Farmers' Day (Kisan Diwas), 23 December 2026 -- at multiple
                 venues across India (venue names to be updated)
@@ -61,7 +67,7 @@ export default function Programmes() {
 
         {/* Exhibitions */}
         <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`} style={{ marginBottom: "3rem" }}>
-          <div className="tag-badge on-light"><Images size={13} /> Exhibitions</div>
+          <div className="tag-badge on-light"><Images size={13} /> {copy.exhibitions}</div>
           <p className="body-md" style={{ maxWidth: 720, marginBottom: "1.8rem" }}>
             SANGAM organises pan-South Asia pop-up and travelling year-round exhibitions that
             showcase Agri Museum posters, artefacts, handicrafts and photographic documentation.
@@ -111,7 +117,7 @@ export default function Programmes() {
 
         {/* SANGAM Talks */}
         <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`} style={{ marginBottom: "3.5rem" }}>
-          <div className="tag-badge on-light"><Mic size={13} /> SANGAM Expert Lecture Series</div>
+          <div className="tag-badge on-light"><Mic size={13} /> {copy.talks}</div>
           <p className="body-md" style={{ maxWidth: 720, marginBottom: "1.8rem" }}>
             A podcast series of informative lectures and curated talks by historians, farmers,
             curators, researchers and academicians on topics related to oral history and

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { GraduationCap, Microscope, Handshake, Wheat, FileText, Send, Users } from "lucide-react";
+import { useSiteLanguage } from "../lib/siteLanguage";
 
 const cards = [
   {
@@ -38,6 +39,12 @@ const steps = [
 export default function Join() {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
+  const locale = useSiteLanguage();
+  const copy = {
+    en: { badge: "Join SANGAM", title: ["Be Part of Something", "Rooted & Lasting"], intro: "SANGAM is a living, growing network and it needs people like you. Whether you are a museum, a seed keeper, a researcher, a student, a farmer or an organisation that cares about agricultural heritage, there is a place for you in SANGAM. Agricultural heritage cannot be preserved by institutions alone -- it requires a community of scholars, farmers, students, professionals and passionate individuals working together across borders, disciplines and generations. Join us.", step: "How to Join -- Three Steps", open: "Open Positions", openText: "SANGAM periodically opens positions for coordinators, researchers, and programme officers. Check back regularly or contact us to express interest.", view: "View Open Positions" },
+    hi: { badge: "संगम से जुड़ें", title: ["कुछ का हिस्सा बनें", "जड़ें और स्थायी"], intro: "संगम एक जीवंत, बढ़ता हुआ नेटवर्क है और इसमें आप जैसे लोग ज़रूरी हैं। चाहे आप किसी संग्रहालय, बीज़ रक्षक, शोधकर्ता, छात्र, किसान या कृषि विरासत के प्रति चिंतित संगठन से हों, संगम में आपका स्थान है। कृषि विरासत केवल संस्थानों द्वारा सुरक्षित नहीं की जा सकती -- इसके लिए विद्वानों, किसानों, छात्रों, पेशेवरों और भावुक लोगों का एक समुदाय चाहिए जो सीमाओं, विषयों और पीढ़ियों के पार मिलकर काम करे। हमसे जुड़ें।", step: "जुड़ने का तरीका -- तीन कदम", open: "खुले पद", openText: "संगम समय-समय पर समन्वयकों, शोधकर्ताओं और कार्यक्रम अधिकारियों के पद खोलता है। नियमित रूप से देखें या अपनाainteres व्यक्त करने के लिए हमसे संपर्क करें।", view: "खुले पद देखें" },
+    bn: { badge: "সাংগমে যোগ দিন", title: ["কিছু অংশ হোন", "শিকড় ও স্থায়িত্ব"], intro: "সাংগম একটি জীবন্ত, ক্রমবর্ধমান নেটওয়ার্ক, আর আপনার মতো মানুষ এর জন্য প্রয়োজন। আপনি জাদুঘর, বীজ সংরক্ষণকারী, গবেষক, ছাত্র, কৃষক বা কৃষি ঐতিহ্য রক্ষায় আগ্রহী কোনো প্রতিষ্ঠান হোন, সাংগমে আপনার জায়গা আছে। কৃষি ঐতিহ্য শুধু প্রতিষ্ঠান দ্বারা রক্ষা করা যায় না -- এর জন্য সীমা, শৃঙ্খলা ও প্রজন্মের পার হয়ে কাজ করা জ্ঞানী, কৃষক, ছাত্র, পেশাদার এবং আবেগী মানুষের একটি সম্প্রদায় দরকার। আমাদের সাথে যোগ দিন।", step: "যোগদানের তিনটি ধাপ", open: "খোলা পদের", openText: "সাংগম সময়ে সময়ে সমন্বয়কারী, গবেষক ও প্রোগ্রাম অফিসারের পদ খোলে। নিয়মিত দেখা করুন বা আগ্রহ প্রকাশ করতে আমাদের যোগাযোগ করুন।", view: "খোলা পদ দেখুন" },
+  }[locale] || { badge: "Join SANGAM", title: ["Be Part of Something", "Rooted & Lasting"], intro: "SANGAM is a living, growing network and it needs people like you. Whether you are a museum, a seed keeper, a researcher, a student, a farmer or an organisation that cares about agricultural heritage, there is a place for you in SANGAM. Agricultural heritage cannot be preserved by institutions alone -- it requires a community of scholars, farmers, students, professionals and passionate individuals working together across borders, disciplines and generations. Join us.", step: "How to Join -- Three Steps", open: "Open Positions", openText: "SANGAM periodically opens positions for coordinators, researchers, and programme officers. Check back regularly or contact us to express interest.", view: "View Open Positions" };
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.08 });
     if (ref.current) obs.observe(ref.current);
@@ -48,15 +55,10 @@ export default function Join() {
     <section className="join" ref={ref}>
       <div className="container">
         <div className={`join__header reveal${vis ? " visible" : ""}`}>
-          <div className="tag-badge on-light">Join SANGAM</div>
-          <h2 className="display-lg">Be Part of Something<br /><em>Rooted & Lasting</em></h2>
+          <div className="tag-badge on-light">{copy.badge}</div>
+          <h2 className="display-lg">{copy.title[0]}<br /><em>{copy.title[1]}</em></h2>
           <p className="body-md" style={{ marginTop: "1rem" }}>
-            SANGAM is a living, growing network and it needs people like you. Whether you are a
-            museum, a seed keeper, a researcher, a student, a farmer or an organisation that cares
-            about agricultural heritage, there is a place for you in SANGAM. Agricultural heritage
-            cannot be preserved by institutions alone -- it requires a community of scholars,
-            farmers, students, professionals and passionate individuals working together across
-            borders, disciplines and generations. Join us.
+            {copy.intro}
           </p>
         </div>
 
@@ -77,8 +79,8 @@ export default function Join() {
 
         {/* How to join */}
         <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`} style={{ marginBottom: "3.2rem" }}>
-          <div className="tag-badge on-light" style={{ margin: "0 auto 1.4rem" }}>How to Join -- Three Steps</div>
-          <div className="heritage__projects" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+          <div className="tag-badge on-light" style={{ margin: "0 auto 1.4rem" }}>{copy.step}</div>
+          <div className="heritage__projects join__steps-grid">
             {steps.map((s, i) => (
               <article className="heritage-card card" key={i}>
                 <div className="icon-box terracotta" style={{ width: 42, height: 42, marginBottom: "1rem" }}>
@@ -93,10 +95,10 @@ export default function Join() {
 
         <div className={`join__positions reveal reveal-delay-2${vis ? " visible" : ""}`}>
           <div className="join__positions-text">
-            <h3>Open Positions</h3>
-            <p>SANGAM periodically opens positions for coordinators, researchers, and programme officers. Check back regularly or contact us to express interest.</p>
+            <h3>{copy.open}</h3>
+            <p>{copy.openText}</p>
           </div>
-          <button className="join__positions-btn">View Open Positions</button>
+          <button className="join__positions-btn">{copy.view}</button>
         </div>
       </div>
     </section>

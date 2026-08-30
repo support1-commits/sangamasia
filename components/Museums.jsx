@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Wheat, Sprout, Shovel, Building2, MapPin, ArrowRight, Award, Quote, Mail, Phone } from "lucide-react";
+import { useSiteLanguage } from "../lib/siteLanguage";
 
 const museums = [
   {
@@ -82,6 +83,12 @@ export default function Museums() {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
   const [active, setActive] = useState(0);
+  const locale = useSiteLanguage();
+  const copy = {
+    en: { badge: "South Asian Network Members", title: ["Custodians of", "Agricultural Memory"], intro: "SANGAM's network includes agricultural museums, seed conservation farms, tool museums, living heritage institutions and individual farmers who are custodians of irreplaceable agricultural knowledge. Each member is a living archive of not just objects, but of practices, stories, memories and ecological wisdom accumulated over centuries.", associated: "Associated Museum Members", associatedTitle: ["Extending the", "Network Across South Asia"], associatedText: "SANGAM's network extends beyond its founding members to include associated museums, heritage institutions and individual keepers from across South Asia..." },
+    hi: { badge: "दक्षिण एशियाई नेटवर्क सदस्य", title: ["रक्षक", "कृषि स्मृति"], intro: "संगम का नेटवर्क कृषि संग्रहालयों, बीज संरक्षण खेतों, टूल संग्रहालयों, जीवित विरासत संस्थानों और उन व्यक्तियों को शामिल करता है जो अमूल्य कृषि ज्ञान के संरक्षक हैं। प्रत्येक सदस्य केवल वस्तुओं का संग्रह नहीं, बल्कि सदियों से संचित प्रथाओं, कहानियों, स्मृतियों और पारिस्थितिक ज्ञान का जीवंत अभिलेख है।", associated: "संबद्ध संग्रहालय सदस्य", associatedTitle: ["नेटवर्क का", "दक्षिण एशिया में विस्तार"], associatedText: "संगम का नेटवर्क अपने संस्थापक सदस्यों से आगे बढ़कर दक्षिण एशिया के अन्य सहयोगी संग्रहालयों, विरासत संस्थानों और individual guardians को भी शामिल करता है।" },
+    bn: { badge: "দক্ষিণ এশীয় নেটওয়ার্ক সদস্য", title: ["সংরক্ষক", "কৃষি স্মৃতি"], intro: "সাংগমের নেটওয়ার্কে কৃষি জাদুঘর, বীজ সংরক্ষণ খামার, টুল জাদুঘর, জীবন্ত ঐতিহ্য প্রতিষ্ঠান ও ব্যক্তিগত কৃষক রয়েছে যারা অমূল্য কৃষি জ্ঞান রক্ষা করেন। প্রতিটি সদস্য শুধু বস্তু নয়, বরং বহু শতাব্দী ধরে সঞ্চিত অনুশীলন, গল্প, স্মৃতি ও পরিবেশগত জ্ঞানের জীবন্ত আর্কাইভ।", associated: "সংযুক্ত জাদুঘর সদস্য", associatedTitle: ["বিস্তৃত হচ্ছে", "দক্ষিণ এশিয়ার নেটওয়ার্ক"], associatedText: "সাংগমের নেটওয়ার্ক প্রতিষ্ঠাতা সদস্যদের বাইরে দক্ষিণ এশিয়ার সহযোগী জাদুঘর, ঐতিহ্য প্রতিষ্ঠান ও সংরক্ষকদেরও অন্তর্ভুক্ত করে।" },
+  }[locale] || { badge: "South Asian Network Members", title: ["Custodians of", "Agricultural Memory"], intro: "SANGAM's network includes agricultural museums, seed conservation farms, tool museums, living heritage institutions and individual farmers who are custodians of irreplaceable agricultural knowledge. Each member is a living archive of not just objects, but of practices, stories, memories and ecological wisdom accumulated over centuries.", associated: "Associated Museum Members", associatedTitle: ["Extending the", "Network Across South Asia"], associatedText: "SANGAM's network extends beyond its founding members to include associated museums, heritage institutions and individual keepers from across South Asia..." };
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.08 });
@@ -95,13 +102,10 @@ export default function Museums() {
     <section className="museums" ref={ref}>
       <div className="container">
         <div className={`museums__header reveal${vis ? " visible" : ""}`}>
-          <div className="tag-badge on-light">South Asian Network Members</div>
-          <h2 className="display-lg">Custodians of<br /><em>Agricultural Memory</em></h2>
+          <div className="tag-badge on-light">{copy.badge}</div>
+          <h2 className="display-lg">{copy.title[0]}<br /><em>{copy.title[1]}</em></h2>
           <p className="body-md" style={{ maxWidth: 640, marginTop: "1rem" }}>
-            SANGAM's network includes agricultural museums, seed conservation farms, tool museums,
-            living heritage institutions and individual farmers who are custodians of irreplaceable
-            agricultural knowledge. Each member is a living archive of not just objects, but of
-            practices, stories, memories and ecological wisdom accumulated over centuries.
+            {copy.intro}
           </p>
         </div>
 
@@ -165,16 +169,10 @@ export default function Museums() {
 
         {/* Associated Museum Members */}
         <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "4.5rem" }}>
-          <div className="tag-badge on-light">Associated Museum Members</div>
-          <h2 className="display-lg" style={{ fontSize: "1.9rem" }}>Extending the<br /><em>Network Across South Asia</em></h2>
+          <div className="tag-badge on-light">{copy.associated}</div>
+          <h2 className="display-lg" style={{ fontSize: "1.9rem" }}>{copy.associatedTitle[0]}<br /><em>{copy.associatedTitle[1]}</em></h2>
           <p className="body-md" style={{ maxWidth: 700, margin: "1rem 0 2.4rem" }}>
-            SANGAM's network extends beyond its founding members to include associated museums,
-            heritage institutions and individual keepers from across South Asia who share the
-            network's mission. Associated members participate in SANGAM programmes, are listed in
-            the network directory on sangam.asia, and contribute to the broader documentation and
-            celebration of South Asian agricultural heritage. The following institutions and
-            individuals are currently in dialogue with SANGAM for Associate Membership; this list
-            will be updated as memberships are confirmed.
+            {copy.associatedText}
           </p>
           <div className="heritage__projects">
             {associates.map((a, i) => (

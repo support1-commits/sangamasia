@@ -1,41 +1,47 @@
+"use client";
+
 import dynamic from "next/dynamic";
+import { useSiteLanguage } from "../lib/siteLanguage";
 
 const NetworkMapLeaflet = dynamic(() => import("./NetworkMapLeaflet"), {
   ssr: false,
 });
 
+const legendBase = [
+  { label: "Network Members", dot: "#f27e47" },
+  { label: "Associated Members", dot: "#d4a24c" },
+  { label: "Outreach", dot: "#9a9a9a" },
+];
+
+const networkMapTranslations = {
+  en: { badge: "Sangam Network", heading: ["South Asia Connected", "by Shared Heritage"], description: "An interactive map of the SANGAM network — Network Members and Associated Members across South and Southeast Asia, and Outreach members extending the network's reach to Japan, Korea, China, Africa and South America.", legend: ["Network Members", "Associated Members", "Outreach"] },
+  hi: { badge: "संगम नेटवर्क", heading: ["दक्षिण एशिया जुड़ा हुआ", "साझा विरासत से"], description: "संगम नेटवर्क का इंटरएक्टिव मानचित्र — दक्षिण और दक्षिण-पूर्व एशिया में नेटवर्क सदस्य और सहयोगी सदस्य, और जापान, कोरिया, चीन, अफ्रीका और दक्षिण अमेरिका तक नेटवर्क का विस्तार करने वाले आउटरीच सदस्य।", legend: ["नेटवर्क सदस्य", "सहयोगी सदस्य", "आउटरीच"] },
+  bn: { badge: "সাংগম নেটওয়ার্ক", heading: ["দক্ষিণ এশিয়া সংযুক্ত", "সাম্বি ঐতিহ্যের মাধ্যমে"], description: "সাংগম নেটওয়ার্কের ইন্টারঅ্যাকটিভ মানচিত্র — দক্ষিণ ও দক্ষিণ-পূর্ব এশিয়ার নেটওয়ার্ক সদস্য ও সহযোগী সদস্য, এবং জাপান, কোরিয়া, চীন, আফ্রিকা ও দক্ষিণ আমেরিকার দিকে সম্প্রসারিত outreach সদস্য।", legend: ["নেটওয়ার্ক সদস্য", "সহযোগী সদস্য", "আউটরিচ"] },
+};
+
 export default function NetworkMap() {
+  const locale = useSiteLanguage();
+  const copy = networkMapTranslations[locale] || networkMapTranslations.en;
+  const legend = copy.legend.map((label, i) => ({ label, dot: legendBase[i].dot }));
+
   return (
     <section className="network-map">
       <div className="container">
         <div className="network-map__header">
           <div className="tag-badge on-light" style={{ marginBottom: "1rem" }}>
             <span className="tag-badge__dot" />
-            Sangam Network
+            {copy.badge}
           </div>
-          <h2 className="display-lg">South Asia Connected<br /><em>by Shared Heritage</em></h2>
-          <p className="body-lg network-map__description">
-            A React Leaflet map showing the South Asia network with real interactive markers.
-            Pan, zoom, and explore the eight network locations with custom map styling.
-          </p>
-          {/* <div className="network-map__status-grid">
-            <div className="network-map__status-item">
-              <div className="network-map__status-countries">India</div>
-              <span className="status-pill status-pill--green">Active Members</span>
-            </div>
-            <div className="network-map__status-item">
-              <div className="network-map__status-countries">Nepal, Sri Lanka, Bangladesh</div>
-              <span className="status-pill status-pill--yellow">Associates Identified</span>
-            </div>
-            <div className="network-map__status-item">
-              <div className="network-map__status-countries">Pakistan, Bhutan, Afghanistan, Maldives</div>
-              <span className="status-pill status-pill--gray">Documentation Pending</span>
-            </div>
+          <h2 className="display-lg">{copy.heading[0]}<br /><em>{copy.heading[1]}</em></h2>
+          <p className="body-lg network-map__description">{copy.description}</p>
+          <div className="network-map__legend">
+            {legend.map((l) => (
+              <span className="network-map__legend-item" key={l.label}>
+                <span className="network-map__legend-dot" style={{ background: l.dot }} />
+                {l.label}
+              </span>
+            ))}
           </div>
-          <div className="network-map__meta">
-            <span>Region area: approx. 5.2 million km²</span>
-            <span>Coverage: South Asia</span>
-          </div> */}
         </div>
 
         <div className="network-map__card">

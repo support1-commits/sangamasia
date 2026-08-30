@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, Film, ExternalLink } from "lucide-react";
+import { ArrowRight, ChevronDown, Film, ExternalLink, Images } from "lucide-react";
+import { useSiteLanguage } from "../lib/siteLanguage";
 
 const themes = [
   { tag: "01", title: "Challenges", desc: "How do museums explain current farming challenges and their causes, the concerns of the past decades, and attempts at resolution? How can agriculture and farming heritage ensure global food safety, and how do current issues affect research, exhibition and public programming goals?" },
@@ -91,23 +92,48 @@ const outcomes = [
 
 const partners = {
   co: [
-    { name: "Punjab Agricultural University (PAU), Ludhiana", desc: "Established in 1962, PAU is the nation's third-oldest agricultural university and played a pioneering role in India's Green Revolution in the 1960s. Its Farmers Fair, held since 1967, draws at least one lakh farmers over two days, and PAU is home to six museums on different aspects of agriculture and rural life." },
-    { name: "Shoolini University of Biotechnology and Management Sciences (SU)", desc: "Based in Bajhol, Solan, Himachal Pradesh, Shoolini is a not-for-profit, multi-disciplinary private university established in 2009 -- consistently ranked among India's top 100 universities (NIRF) and one of India's highest generators of patents and innovation." },
-    { name: "The Heritage Foundation (THF)", desc: "A non-profit, non-government heritage research, outreach and conservation organisation, registered as a national society, working on research, documentation, curation and conservation of tangible and intangible Indic heritage." },
+    { name: "Punjab Agricultural University (PAU), Ludhiana", desc: "Established in 1962, PAU is the nation's third-oldest agricultural university and played a pioneering role in India's Green Revolution in the 1960s. Its Farmers Fair, held since 1967, draws at least one lakh farmers over two days, and PAU is home to six museums on different aspects of agriculture and rural life.", url: "https://pau.edu/" },
+    { name: "Shoolini University of Biotechnology and Management Sciences (SU)", desc: "Based in Bajhol, Solan, Himachal Pradesh, Shoolini is a not-for-profit, multi-disciplinary private university established in 2009 -- consistently ranked among India's top 100 universities (NIRF) and one of India's highest generators of patents and innovation.", url: "https://shooliniuniversity.com/" },
+    { name: "The Heritage Foundation (THF)", desc: "A non-profit, non-government heritage research, outreach and conservation organisation, registered as a national society, working on research, documentation, curation and conservation of tangible and intangible Indic heritage.", url: null },
   ],
   knowledge: [
-    { name: "INTACH -- The Indian National Trust for Art and Cultural Heritage", desc: "A premier non-profit, non-government heritage conservation organisation and volunteer membership body set up to protect unprotected monuments and sites, conserve art and material heritage, and revitalise India's intangible heritage." },
-    { name: "SANGAM -- South Asia Network of Grassroots Agricultural Museums", desc: "A collective of institutions and individuals telling the story of agriculture and agriculturists of the Indian subcontinent -- using the best museology and exhibition practice, from digital and online to physical artifacts, through a network of academic and cultural institutions across the region." },
+    { name: "INTACH -- The Indian National Trust for Art and Cultural Heritage", desc: "A premier non-profit, non-government heritage conservation organisation and volunteer membership body set up to protect unprotected monuments and sites, conserve art and material heritage, and revitalise India's intangible heritage.", url: "https://www.intach.org/" },
+    { name: "SANGAM -- South Asia Network of Grassroots Agricultural Museums", desc: "A collective of institutions and individuals telling the story of agriculture and agriculturists of the Indian subcontinent -- using the best museology and exhibition practice, from digital and online to physical artifacts, through a network of academic and cultural institutions across the region.", url: "/" },
   ],
 };
+
+const sponsors = [
+  "Department of Agriculture, Government of Himachal Pradesh",
+  "HPMC -- Himachal Pradesh Horticulture Produce Marketing and Processing Corporation",
+  "Shoolini University",
+  "AIMA -- International Association of Agricultural Museums",
+];
+
+const conferenceGalleryImages = [
+  { src: "/cima/1.jpg", alt: "CIMA 2023 conference photography 1" },
+  { src: "/cima/2.jpg", alt: "CIMA 2023 conference photography 2" },
+  { src: "/cima/3.jpg", alt: "CIMA 2023 conference photography 3" },
+  { src: "/cima/4.jpg", alt: "CIMA 2023 conference photography 4" },
+  { src: "/cima/5.jpg", alt: "CIMA 2023 conference photography 5" },
+  { src: "/cima/6.jpg", alt: "CIMA 2023 conference photography 6" },
+  { src: "/cima/7.jpg", alt: "CIMA 2023 conference photography 7" },
+  { src: "/cima/8.jpg", alt: "CIMA 2023 conference photography 8" },
+  { src: "/cima/9.jpg", alt: "CIMA 2023 conference photography 9" },
+  { src: "/cima/10.jpg", alt: "CIMA 2023 conference photography 10" },
+  { src: "/cima/11.JPG", alt: "CIMA 2023 conference photography 11" },
+  { src: "/cima/12.jpg", alt: "CIMA 2023 conference photography 12" },
+  { src: "/cima/13.jpg", alt: "CIMA 2023 conference photography 13" },
+  { src: "/cima/14.jpg", alt: "CIMA 2023 conference photography 14" },
+  { src: "/cima/15.jpg", alt: "CIMA 2023 conference photography 15" },
+];
 
 const films = [
   { title: "Life in a Fistful of Rice", by: "Presented by the Intangible Cultural Heritage Division, INTACH", link: "https://youtu.be/_xvQukT5h7w?si=u3sIjJV3EKPA5psM" },
   { title: "Faces of Climate Resilience", by: "CEEW & Drokpa Films, supported by India Climate Collaborative and EdelGive Foundation -- 16 stories across 5 Indian states", link: "https://youtu.be/0N5_5qcFw-c?si=j89VFOeoXiEFuQ8t" },
   { title: "Organic Farming: Tradition and Science", by: "G. S. Unnikrishnan Nair -- MANAGE Agri. Film Festival 2023", link: "https://youtu.be/PC1mYGhtiCQ?si=Qyo8wOhYhlbxO3YH" },
   { title: "The Archives of Rural History -- A video portrait of the virtual archives in Bern", by: "Archives of Rural History collaborators, Bern 2023", link: "https://youtu.be/KFe27AgqFjI?si=LloFDIK_7vzgbpyJ" },
-  { title: "Code of Conduct for Responsible Fishing", by: "Bappa Ray, National Award-winning filmmaker -- Dept. of Animal Husbandry, Dairying & Fisheries", link: "https://youtu.be/GrUAOxof3oQ?si=iUtkcHzC7lvWg21l" },
-  { title: "Wangala -- A Garo Festival", by: "The cycle of jhum cultivation and associated cultural activities in the Garo Hills", link: "https://youtu.be/LAR2p5L5X_U?si=_uddAxD3y44N0MrB" },
+  { title: "Code of Conduct for Responsible Fishing", by: "Presented by the Department of Animal Husbandry, Dairying and Fisheries, Ministry of Agriculture", link: "https://youtu.be/GrUAOxof3oQ?si=iUtkcHzC7lvWg21l" },
+  { title: "Cold Water Fisheries", by: "Presented by the Department of Animal Husbandry, Dairying and Fisheries, Ministry of Agriculture", link: "https://youtu.be/LAR2p5L5X_U?si=_uddAxD3y44N0MrB" },
 ];
 
 const spsFilms = [
@@ -167,22 +193,60 @@ export default function Conference() {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
   const [activeDay, setActiveDay] = useState(0);
-    const [openDay, setOpenDay] = useState(0);
+  const [openDay, setOpenDay] = useState(0);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const locale = useSiteLanguage();
+  const copy = {
+    en: { tag: "Flagship Conference · CIMA 2023", title: ["Agriculture:", "A Living Tradition"], sub: "20th Congrès International des Musées d'Agriculture — held for the first time in Asia and in India, 13–18 October 2023.", label: "Flagship Conference", heading: ["Where Heritage", "Finds Its Voice"], body1: "CIMA was held for the first time in Asia and in India...", body2: "The conference focused on how agriculture maintains itself as a living tradition...", body3: "It was a six-day conference attended by farmers..." },
+    hi: { tag: "मुख्य सम्मेलन · CIMA 2023", title: ["कृषि:", "एक जीवंत परंपरा"], sub: "20वाँ अंतर्राष्ट्रीय कृषि संग्रहालय कांग्रेस — पहली बार एशिया और भारत में, 13–18 अक्टूबर 2023।", label: "मुख्य सम्मेलन", heading: ["जहाँ विरासत", "अपना स्वर पाती है"], body1: "CIMA पहली बार एशिया और भारत में आयोजित हुआ...", body2: "सम्मेलन का केंद्र यह था कि कृषि अपने आप को जीवंत परंपरा के रूप में कैसे बनाए रखती है...", body3: "यह छह दिवसीय सम्मेलन था..." },
+    bn: { tag: "ফ্ল্যাগশিপ কনফারেন্স · CIMA 2023", title: ["কৃষি:", "একটি জীবন্ত উত্তরাধিকার"], sub: "20তম আন্তর্জাতিক কৃষি জাদুঘর কংগ্রেস — প্রথমবারের মতো এশিয়া ও ভারতে, 13–18 অক্টোবর 2023।", label: "ফ্ল্যাগশিপ কনফারেন্স", heading: ["যেখানে ঐতিহ্য", "নিজের কণ্ঠ খুঁজে পায়"], body1: "CIMA প্রথমবারের মতো এশিয়া ও ভারতে অনুষ্ঠিত হয়...", body2: "কনফারেন্সের ফোকাস ছিল কীভাবে কৃষি নিজেকে জীবন্ত ঐতিহ্যের সঙ্গে ধরে রাখে...", body3: "এটি ছয় দিনব্যাপী কনফারেন্স ছিল..." },
+  }[locale] || { tag: "Flagship Conference · CIMA 2023", title: ["Agriculture:", "A Living Tradition"], sub: "20th Congrès International des Musées d'Agriculture — held for the first time in Asia and in India, 13–18 October 2023.", label: "Flagship Conference", heading: ["Where Heritage", "Finds Its Voice"], body1: "CIMA was held for the first time in Asia and in India...", body2: "The conference focused on how agriculture maintains itself as a living tradition...", body3: "It was a six-day conference attended by farmers..." };
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.1 });
-    if (ref.current) obs.observe(ref.current);
+    const section = ref.current;
+    if (section) {
+      obs.observe(section);
+      if (section.getBoundingClientRect().top < window.innerHeight) {
+        requestAnimationFrame(() => setVis(true));
+      }
+    }
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedImageIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const openImage = (index) => setSelectedImageIndex(index);
+  const closeImage = () => setSelectedImageIndex(null);
+  const showPreviousImage = () => setSelectedImageIndex((current) => current === null ? current : (current - 1 + conferenceGalleryImages.length) % conferenceGalleryImages.length);
+  const showNextImage = () => setSelectedImageIndex((current) => current === null ? current : (current + 1) % conferenceGalleryImages.length);
+
   return (
     <section className="conference" ref={ref}>
+      <div className={`conference-hero reveal${vis ? " visible" : ""}`}>
+        <img src="/cima-conference.jpeg" alt="20th Congress of the International Association of Agricultural Museums, CIMA 2023" className="conference-hero__img" />
+        <div className="conference-hero__overlay" />
+        <div className="container conference-hero__content">
+          <div className="tag-badge terracotta"><span className="tag-badge__dot" /> {copy.tag}</div>
+          <h1 className="conference-hero__heading">{copy.title[0]} <em>{copy.title[1]}</em></h1>
+          <p className="conference-hero__sub">{copy.sub}</p>
+        </div>
+      </div>
       <div className="conference__pattern" />
       <div className="container">
         <div className="conference__header">
           <div className={`conference__display reveal${vis ? " visible" : ""}`}>
             <div className="conference__label">
               <span className="conference__label-dot" />
-              <span className="conference__label-text">Flagship Conference</span>
+              <span className="conference__label-text">{copy.label}</span>
             </div>
             <div className="conference__acronym">CIMA</div>
             <div className="conference__year">2023</div>
@@ -193,33 +257,18 @@ export default function Conference() {
           </div>
 
           <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`}>
-            <div className="tag-badge on-light">Theme: Agriculture -- A Living Tradition</div>
+            <div className="tag-badge on-light conference__theme-tag">Theme: Agriculture -- A Living Tradition</div>
             <h2 className="display-lg conference__heading" style={{ marginBottom: "1.4rem" }}>
-              Where Heritage<br /><em>Finds Its Voice</em>
+              {copy.heading[0]}<br /><em>{copy.heading[1]}</em>
             </h2>
             <p className="conference__body">
-              CIMA was held for the first time in Asia and in India, with two host sites: 13-15
-              October 2023 at Shoolini University, Solan, Himachal Pradesh, and 16-18 October at
-              Punjab Agricultural University, Ludhiana -- home to the oldest agricultural museum in
-              Punjab, the Museum of Social History of Punjab. It is one of the most premier and
-              largest recurring international triennial congresses dedicated globally to
-              agricultural museums, living history and rural heritage, educating people about the
-              significance of human society through agriculture, and facilitating dialogue between
-              museums worldwide.
+              {copy.body1}
             </p>
             <p className="conference__body">
-              The conference focused on how agriculture maintains itself as a living tradition by
-              adapting past practices with present innovation for a sustainable future, alongside
-              discussion of the agricultural museum's educational role alongside research
-              institutes and universities. The effort of CIMA '23 was to scale up documentation and
-              communication of agriculture's rich, living tradition in India and to seek synergies
-              with organisations sharing a common goal.
+              {copy.body2}
             </p>
             <p className="conference__body">
-              It was a six-day conference attended by farmers, educators, activists, historians,
-              professors, foreign delegates and students, organised for the first three days by
-              Shoolini University, Himachal Pradesh, and the next three days by Punjab Agricultural
-              University (PAU), Ludhiana.
+              {copy.body3}
             </p>
             <div className="conference__btn-row">
               <a href="https://www.agriculturalmuseums.org/2023/01/31/20th-aima-conference-in-india-13-18-october-2023/" target="_blank" rel="noopener noreferrer" className="btn btn-outline-light">
@@ -290,7 +339,7 @@ export default function Conference() {
 
         <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "4rem" }}>
           <div className="tag-badge on-light">Outcome of the Conference</div>
-          <div className="heritage__projects" style={{ gridTemplateColumns: "1fr 1fr" }}>
+          <div className="heritage__projects conference__outcomes-grid">
             {outcomes.map((o, i) => (
               <article className="heritage-card card" key={i}>
                 <p className="heritage-card__desc" style={{ marginBottom: 0 }}>{o}</p>
@@ -310,38 +359,96 @@ export default function Conference() {
 
         <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "1.5rem" }}>
           <div className="tag-badge on-light">Partners of the Conference</div>
-          <h4 style={{ fontFamily: "Fraunces, serif", fontWeight: 700, color: "var(--card-bg)", margin: "1rem 0 0.8rem" }}>Co-Organisers</h4>
-          <div className="heritage__projects" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+
+          <div className="conference__partner-logos">
+            <img src="/conference-partners.jpeg" alt="The Heritage Foundation, Shoolini University, Punjab Agricultural University and INTACH logos" />
+          </div>
+
+          <h4 style={{ fontFamily: "Fraunces, serif", fontWeight: 700, color: "var(--near-black)", margin: "1rem 0 0.8rem" }}>Co-Organisers</h4>
+          <div className="heritage__projects conference__partners-grid">
             {partners.co.map((p, i) => (
               <article className="heritage-card card" key={i}>
                 <h3 className="heritage-card__title" style={{ fontSize: "1rem" }}>{p.name}</h3>
                 <p className="heritage-card__desc">{p.desc}</p>
+                {p.url && (
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" className="prog-card__link" style={{ marginTop: "0.7rem" }}>
+                    Visit website <ExternalLink size={13} strokeWidth={2} />
+                  </a>
+                )}
               </article>
             ))}
           </div>
-          <h4 style={{ fontFamily: "Fraunces, serif", fontWeight: 700, color: "var(--card-bg)", margin: "2rem 0 0.8rem" }}>Knowledge Partners</h4>
-          <div className="heritage__projects" style={{ gridTemplateColumns: "1fr 1fr" }}>
+          <h4 style={{ fontFamily: "Fraunces, serif", fontWeight: 700, color: "var(--near-black)", margin: "2rem 0 0.8rem" }}>Knowledge Partners</h4>
+          <div className="heritage__projects conference__knowledge-grid">
             {partners.knowledge.map((p, i) => (
               <article className="heritage-card card" key={i}>
                 <h3 className="heritage-card__title" style={{ fontSize: "1rem" }}>{p.name}</h3>
                 <p className="heritage-card__desc">{p.desc}</p>
+                {p.url && (
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" className="prog-card__link" style={{ marginTop: "0.7rem" }}>
+                    Visit website <ExternalLink size={13} strokeWidth={2} />
+                  </a>
+                )}
               </article>
             ))}
           </div>
         </div>
 
-        <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "3.5rem", padding: "2rem", border: "1px dashed rgba(250,244,232,0.3)", borderRadius: "var(--radius-lg)", textAlign: "center" }}>
-          <p className="body-sm" style={{ color: "rgba(250,244,232,0.7)" }}>
-            Photo gallery placeholder -- field visits, exhibitions, speakers and partner photographs
-            from CIMA 2023 will be added here.
-          </p>
+        <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "3.5rem" }}>
+          <div className="conference-editorial-gallery">
+            <div className="conference-editorial-gallery__header">
+              <div className="conference-editorial-gallery__eyebrow">Photo Gallery</div>
+              <div className="conference-editorial-gallery__title-wrap">
+                <h3 className="conference-editorial-gallery__title">Moments from CIMA 2023</h3>
+                <p className="conference-editorial-gallery__text">
+                  Field visits, exhibitions, conversations, and the atmosphere that shaped the conference across the six-day programme.
+                </p>
+              </div>
+            </div>
+
+            <div className="conference-editorial-gallery__layout">
+              <button type="button" className="conference-editorial-gallery__feature" onClick={() => openImage(0)} aria-label="Open featured CIMA image">
+                <img src={conferenceGalleryImages[0].src} alt={conferenceGalleryImages[0].alt} loading="lazy" />
+                <span className="conference-editorial-gallery__feature-overlay" />
+              </button>
+
+              <div className="conference-editorial-gallery__stack">
+                {conferenceGalleryImages.slice(1, 5).map((image, index) => (
+                  <button key={`${image.src}-${index}`} type="button" className="conference-editorial-gallery__tile" onClick={() => openImage(index + 1)} aria-label={`Open gallery image ${index + 2}`}>
+                    <img src={image.src} alt={image.alt} loading="lazy" />
+                    <span className="conference-editorial-gallery__tile-overlay" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="conference-editorial-gallery__strip">
+              {conferenceGalleryImages.slice(5).map((image, index) => (
+                <button key={`${image.src}-${index}`} type="button" className="conference-editorial-gallery__strip-item" onClick={() => openImage(index + 5)} aria-label={`Open gallery image ${index + 6}`}>
+                  <img src={image.src} alt={image.alt} loading="lazy" />
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
+        {selectedImageIndex !== null && (
+          <div className="conference-gallery-lightbox" onClick={closeImage} role="dialog" aria-modal="true">
+            <div className="conference-gallery-lightbox__panel" onClick={(event) => event.stopPropagation()}>
+              <button type="button" className="conference-gallery-lightbox__close" onClick={closeImage} aria-label="Close image preview">×</button>
+              <button type="button" className="conference-gallery-lightbox__nav conference-gallery-lightbox__nav--prev" onClick={showPreviousImage} aria-label="Previous image">‹</button>
+              <img src={conferenceGalleryImages[selectedImageIndex].src} alt={conferenceGalleryImages[selectedImageIndex].alt} />
+              <button type="button" className="conference-gallery-lightbox__nav conference-gallery-lightbox__nav--next" onClick={showNextImage} aria-label="Next image">›</button>
+            </div>
+          </div>
+        )}
+
         <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "4rem" }}>
-          <div className="tag-badge on-light"><Film size={13} /> Movies Screened at CIMA 2023</div>
+          <div className="tag-badge on-light"><Film size={13} /> Film Festival CIMA'23</div>
           <p className="conference__body" style={{ maxWidth: 780 }}>
             Multiple movies and films were screened over the course of the conference -- documenting
-            agriculture, climate resilience, and rural life across South Asia.
+            agriculture, climate resilience, and rural life across South Asia. Running times for
+            these six films will be added shortly.
           </p>
           <div className="conference-video-grid">
             {films.map((f, i) => {
@@ -357,12 +464,34 @@ export default function Conference() {
                     <span className="conference-video-card__play"><ExternalLink size={16} strokeWidth={2} /></span>
                   </div>
                   <div className="conference-video-card__body">
+                    <div className="conference-video-card__meta">
+                      <span className="conference-video-card__subject">Duration TBD</span>
+                    </div>
                     <h3>{f.title}</h3>
                     <p>{f.by}</p>
                   </div>
                 </a>
               );
             })}
+          </div>
+        </div>
+
+        <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "4rem" }}>
+          <div className="tag-badge on-light"><Images size={13} /> Glimpse of the Conference</div>
+          <p className="conference__body" style={{ maxWidth: 780 }}>
+            The gallery below brings together images from across the six days of CIMA 2023, including
+            inaugural sessions, parallel tracks, the cultural evening, and the closing field visit to Punjab.
+          </p>
+        </div>
+
+        <div className={`reveal reveal-delay-3${vis ? " visible" : ""}`} style={{ marginTop: "4rem" }}>
+          <div className="tag-badge on-light">Sponsors</div>
+          <div className="heritage__projects conference__partners-grid">
+            {sponsors.map((s, i) => (
+              <article className="heritage-card card" key={i}>
+                <h3 className="heritage-card__title" style={{ fontSize: "1rem" }}>{s}</h3>
+              </article>
+            ))}
           </div>
         </div>
 

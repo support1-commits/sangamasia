@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowUpRight, Mail } from "lucide-react";
+import { useSiteLanguage } from "../lib/siteLanguage";
 
 const YouTubeIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden="true">
@@ -85,12 +86,19 @@ const platforms = [
   },
 ];
 
+const connectTranslations = {
+  en: { badge: "Connect", heading: ["Social Media", "Handles"], labels: { write: "Write to us", channel: "Channel", channelUrl: "Channel URL", page: "Page", profile: "Profile", linktree: "Linktree" } },
+  hi: { badge: "कनेक्ट", heading: ["सोशल मीडिया", "हैंडल"], labels: { write: "हमें लिखें", channel: "चैनल", channelUrl: "चैनल URL", page: "पेज", profile: "प्रोफ़ाइल", linktree: "लिंकट्री" } },
+  bn: { badge: "সংযোগ", heading: ["সোশ্যাল মিডিয়া", "হ্যান্ডেল"], labels: { write: "আমাদের লিখুন", channel: "চ্যানেল", channelUrl: "চ্যানেল ইউআরএল", page: "পৃষ্ঠা", profile: "প্রোফাইল", linktree: "লিংকট্রি" } },
+};
+
 export default function Connect() {
   const ref = useRef(null);
-  const [vis, setVis] = useState(false);
+  const locale = useSiteLanguage();
+  const copy = connectTranslations[locale] || connectTranslations.en;
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.08 });
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add("visible"); }, { threshold: 0.08 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
@@ -98,21 +106,31 @@ export default function Connect() {
   return (
     <section className="connect-page" ref={ref}>
       <div className="container">
-        <div className={`connect-page__header reveal${vis ? " visible" : ""}`}>
-          <div className="tag-badge on-light">Connect</div>
-          <h2 className="display-lg">Social Media<br /><em>Handles</em></h2>
+        <div className={`connect-page__header reveal visible`}>
+          <div className="tag-badge on-light">{copy.badge}</div>
+          <h2 className="display-lg">{copy.heading[0]}<br /><em>{copy.heading[1]}</em></h2>
         </div>
 
         <div className="connect-grid">
           {platforms.map((p, i) => {
             const Icon = p.icon;
+            const linkedLabel = p.links[0].label;
+            const labelText = {
+              "Write to us": copy.labels.write,
+              Channel: copy.labels.channel,
+              "Channel URL": copy.labels.channelUrl,
+              Page: copy.labels.page,
+              Profile: copy.labels.profile,
+              Linktree: copy.labels.linktree,
+            }[linkedLabel] || linkedLabel;
+
             return (
               <a
                 key={p.name}
                 href={p.links[0].href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`connect-card connect-card--${p.theme} reveal reveal-delay-${Math.min(i + 1, 4)}${vis ? " visible" : ""}`}
+                className={`connect-card connect-card--${p.theme} reveal reveal-delay-${Math.min(i + 1, 4)} visible`}
               >
                 <div className="connect-card__top">
                   <div className="connect-card__icon"><Icon size={22} strokeWidth={2.2} /></div>
@@ -124,7 +142,14 @@ export default function Connect() {
                 <div className="connect-card__links">
                   {p.links.map((link, idx) => (
                     <span key={idx} className="connect-card__link">
-                      {link.label}
+                      {({
+                        "Write to us": copy.labels.write,
+                        Channel: copy.labels.channel,
+                        "Channel URL": copy.labels.channelUrl,
+                        Page: copy.labels.page,
+                        Profile: copy.labels.profile,
+                        Linktree: copy.labels.linktree,
+                      })[link.label] || link.label}
                       <ArrowUpRight size={14} strokeWidth={2} />
                     </span>
                   ))}

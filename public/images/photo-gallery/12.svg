@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="CIMA 2023 conference photography 12">
+  <defs>
+    <linearGradient id="bg12" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#d38b6a"/>
+      <stop offset="55%" stop-color="#6d4234"/>
+      <stop offset="100%" stop-color="#f5efe6"/>
+    </linearGradient>
+    <radialGradient id="glow12" cx="40%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.72)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg12)"/>
+  <rect width="1200" height="900" fill="url(#glow12)"/>
+  <circle cx="1000" cy="180" r="180" fill="rgba(255,255,255,0.14)"/>
+  <circle cx="220" cy="760" r="240" fill="rgba(22,23,18,0.12)"/>
+  <path d="M0 670 C220 560, 360 700, 600 620 S980 520, 1200 680 L1200 900 L0 900 Z" fill="rgba(13,22,16,0.18)"/>
+  <g font-family="Georgia, serif" fill="#f9f5ee">
+    <text x="90" y="150" font-size="52" letter-spacing="8">CIMA 2023</text>
+    <text x="90" y="220" font-size="110" font-weight="700">Agriculture</text>
+    <text x="90" y="310" font-size="88" font-style="italic">A Living Tradition</text>
+  </g>
+  <g font-family="Arial, sans-serif" fill="rgba(255,255,255,0.82)">
+    <text x="90" y="780" font-size="32" letter-spacing="4">SANGAM • South Asia</text>
+  </g>
+</svg>
