@@ -78,7 +78,7 @@ export default function Navbar() {
             <Image src="/sangam-logo.png" alt="SANGAM logo" width={32} height={32} className="navbar__logo-img" />
           </div>
           <div className="navbar__brand-text">
-            <span className="navbar__brand-name">SANGAM NETWORK</span>
+            <span className="navbar__brand-name"><span>SANGAM</span><span>NETWORK</span></span>
             <span className="navbar__brand-sub">of Agricultural Heritage</span>
           </div>
         </Link>

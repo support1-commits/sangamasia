@@ -83,28 +83,38 @@ export default function About() {
               {copy.intro}
             </p>
             <p className="body-md about__desc">
-              South Asia is home to some of the world's oldest and most diverse agricultural
-              traditions. For over ten thousand years, farmers of this region have cultivated
+              South Asia is a home to some of the world's oldest and most diverse agricultural
+              traditions. For over ten thousand years, the farmers of this region cultivated
               thousands of crop varieties, developed sophisticated irrigation systems, created
               intricate tools adapted to every terrain and season, and passed on an enormous body
-              of ecological knowledge through practice, song, story and festival. This heritage is
-              not merely historical — it is living, held today in the seed varieties elderly
-              farmers quietly conserve, the tools stored in village sheds and the songs sung during
-              harvest.
+              of ecological knowledge through practice, song, story and festivals. This heritage is
+              not merely historical — it is living. It exists today in the seed varieties that
+              elderly farmers quietly conserve in their homes, in the tools stored in village
+              sheds, in the farming songs sung during harvest, in the knowledge of which plant
+              grows where and why. Agricultural knowledge and associated livelihoods are living
+              traditions in the global South.
             </p>
             <p className="body-md about__desc">
-              SANGAM is not limited to South Asia alone — its reach extends beyond the subcontinent
-              to Korea, Japan, China, Africa and South America as outreach members, broadening the
-              network's community of practice around shared agricultural heritage.
+              SANGAM - South Asian Network for Agriculture Museums is therefore, an initiative
+              taken to preserve this heritage by bringing it together. SANGAM is pan-South Asian
+              Network of multiple countries that unites agricultural museums, farmers, historians,
+              scholars and individuals across the subcontinent to preserve the living heritage of
+              agriculture and farming traditions. The network consists of the countries which
+              includes India, Bangladesh, Afghanistan, Pakistan, Nepal, Bhutan, Maldives and Sri
+              Lanka, Thailand and Indonesia. South Asia is connected by a shared heritage and
+              cultural values. SANGAM is an effort to bring together this heritage on one platform.
+              SANGAM is not only limited to south Asia, it has to reached beyond South Asia to
+              Korea, Japan, China, Africa and South America as its outreached members.
             </p>
             <p className="body-md about__desc">
-              Through SANGAM we are building a community of individuals and organisations working
-              to conserve this living tradition through museums and oral history. At present we
-              have more than 100 museums across these nations preserving age-old traditions, tools,
-              artifacts, rituals and agricultural histories — documenting, celebrating and
-              connecting this heritage to present knowledge systems before it is lost forever. The
-              key partners of this network are museums, educational institutions and individuals,
-              and SANGAM will host a number of events and programmes that bring these nations
+              Through SANGAM we are building a community of individuals and organizations that are
+              making an effort to conserve the lost tradition through museums and oral history. At
+              present there are more than 100 museums in these nations that are preserving the
+              age-old traditions, tools, artifacts, rituals and agricultural histories. SANGAM
+              therefore, is an initiative taken to document, celebrate and connect this living
+              heritage to the present knowledge systems before it is lost forever. The key partners
+              of this network are museum curators, educational institution and individuals. SANGAM
+              will conduct events and programmes that will connect these nations and bringing then
               together on one platform for a larger audience.
             </p>
 

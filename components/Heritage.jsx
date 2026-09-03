@@ -41,7 +41,7 @@ const projects = [
       "Available to view online",
       "Available as a travelling physical exhibition for institutions and public spaces",
     ],
-    note: "Photos will be updated.",
+    note: "Photos will be added.",
   },
 ];
 
@@ -50,10 +50,10 @@ export default function Heritage() {
   const [vis, setVis] = useState(false);
   const locale = useSiteLanguage();
   const copy = {
-    en: { badge: "Agricultural Heritage of South Asia", title: ["Documenting the", "Land's Memory"], intro: "South Asia is one of the world's great agricultural civilisations..." },
+    en: { badge: "Agricultural Heritage of South Asia", title: ["Documenting the", "Land's Memory"], intro: "South Asia is one of the world's great agricultural civilisations. For over ten thousand years, the farmers of this region have cultivated thousands of crop varieties, developed sophisticated irrigation and water management systems, created intricate tools adapted to every terrain and season, and accumulated an enormous body of ecological knowledge passed on through practice, story, ritual and song. This heritage is living. It exists today in the seed varieties that farmers quietly conserve in their homes, in the tools stored in village sheds, in the songs sung during harvest, in the knowledge of which variety to plant when the monsoon arrives late and which thrives in flooded fields. SANGAM exists to document and celebrate this heritage before it disappears." },
     hi: { badge: "दक्षिण एशिया की कृषि विरासत", title: ["दस्तावेज़ीकरण", "भूमि की स्मृति"], intro: "दक्षिण एशिया दुनिया की प्रमुख कृषि सभ्यताओं में से एक है..." },
     bn: { badge: "দক্ষিণ এশিয়ার কৃষি ঐতিহ্য", title: ["নথিভুক্ত করা", "ভূমির স্মৃতি"], intro: "দক্ষিণ এশিয়া বিশ্বের অন্যতম প্রধান কৃষি সভ্যতা..." },
-  }[locale] || { badge: "Agricultural Heritage of South Asia", title: ["Documenting the", "Land's Memory"], intro: "South Asia is one of the world's great agricultural civilisations..." };
+  }[locale] || { badge: "Agricultural Heritage of South Asia", title: ["Documenting the", "Land's Memory"], intro: "South Asia is one of the world's great agricultural civilisations. For over ten thousand years, the farmers of this region have cultivated thousands of crop varieties, developed sophisticated irrigation and water management systems, created intricate tools adapted to every terrain and season, and accumulated an enormous body of ecological knowledge passed on through practice, story, ritual and song. This heritage is living. It exists today in the seed varieties that farmers quietly conserve in their homes, in the tools stored in village sheds, in the songs sung during harvest, in the knowledge of which variety to plant when the monsoon arrives late and which thrives in flooded fields. SANGAM exists to document and celebrate this heritage before it disappears." };
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.08 });
     if (ref.current) obs.observe(ref.current);

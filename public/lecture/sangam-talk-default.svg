@@ -1,0 +1,43 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ground" x1="80" y1="70" x2="720" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1410"/>
+      <stop offset="0.55" stop-color="#3D2817"/>
+      <stop offset="1" stop-color="#5C7346"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="170" y1="110" x2="610" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D4A24C" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#A8472E" stop-opacity="0.05"/>
+    </linearGradient>
+    <pattern id="grain" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="8" r="1.5" fill="#FAF4E8" fill-opacity="0.12"/>
+      <circle cx="21" cy="25" r="1" fill="#FAF4E8" fill-opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="1000" fill="url(#ground)"/>
+  <circle cx="415" cy="300" r="265" fill="url(#sun)"/>
+  <path d="M0 695C117 646 190 677 286 708C397 744 470 744 574 699C662 661 731 655 800 679V1000H0V695Z" fill="#5C7346" fill-opacity="0.72"/>
+  <path d="M0 806C108 754 221 770 322 810C434 854 539 844 638 790C703 755 755 754 800 768V1000H0V806Z" fill="#A8472E" fill-opacity="0.68"/>
+  <path d="M0 872C110 831 211 846 321 891C440 940 563 913 676 857C733 829 772 828 800 837V1000H0V872Z" fill="#D4A24C" fill-opacity="0.38"/>
+  <g stroke="#FAF4E8" stroke-opacity="0.72" stroke-width="5" stroke-linecap="round">
+    <path d="M400 704V417"/>
+    <path d="M400 532C360 490 323 474 282 478"/>
+    <path d="M400 588C447 540 486 527 533 534"/>
+    <path d="M400 472C425 435 450 421 480 422"/>
+    <path d="M399 646C359 612 325 604 292 613"/>
+  </g>
+  <g fill="#D4A24C">
+    <ellipse cx="278" cy="473" rx="31" ry="10" transform="rotate(12 278 473)"/>
+    <ellipse cx="536" cy="531" rx="34" ry="10" transform="rotate(-12 536 531)"/>
+    <ellipse cx="482" cy="420" rx="27" ry="9" transform="rotate(-25 482 420)"/>
+    <ellipse cx="291" cy="612" rx="28" ry="9" transform="rotate(18 291 612)"/>
+  </g>
+  <rect width="800" height="1000" fill="url(#grain)"/>
+  <g fill="#FAF4E8">
+    <text x="72" y="126" font-family="Georgia, serif" font-size="27" letter-spacing="6">SANGAM</text>
+    <text x="72" y="820" font-family="Georgia, serif" font-size="48" font-weight="bold">SANGAM</text>
+    <text x="72" y="874" font-family="Arial, sans-serif" font-size="23" letter-spacing="5" fill="#D4A24C">EXPERT LECTURE SERIES</text>
+  </g>
+  <path d="M72 905H728" stroke="#FAF4E8" stroke-opacity="0.42"/>
+  <text x="72" y="943" font-family="Arial, sans-serif" font-size="17" letter-spacing="3" fill="#FAF4E8" fill-opacity="0.78">AGRICULTURAL HERITAGE • LIVED KNOWLEDGE</text>
+</svg>

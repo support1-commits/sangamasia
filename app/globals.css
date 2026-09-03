@@ -175,10 +175,10 @@ a { color: inherit; }
 .navbar__logo-box { width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--millet-green); display: flex; align-items: center; justify-content: center; color: var(--card-bg); flex-shrink: 0; overflow: hidden; }
 .navbar__logo-img,
 .footer__logo-img { width: 100%; height: 100%; object-fit: contain; }
-.navbar__brand-text { display: flex; flex-direction: column; min-width: 0; align-items: flex-start; }
+.navbar__brand-text { display: flex; flex-direction: column; width: 176px; min-width: 0; align-items: stretch; }
 .navbar__brand-name,
 .navbar__brand-sub { display: inline-block; width: fit-content; max-width: 100%; }
-.navbar__brand-name { font-family: "Fraunces", serif; font-weight: 700; font-size: 1.12rem; color: var(--near-black); line-height: 1; white-space: nowrap; }
+.navbar__brand-name { display: flex; justify-content: space-between; width: 100%; font-family: "Fraunces", serif; font-weight: 700; font-size: 1.12rem; color: var(--near-black); line-height: 1; white-space: nowrap; }
 .navbar__brand-sub { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); line-height: 1.2; margin-top: 3px; white-space: nowrap; overflow-wrap: anywhere; }
 
 .navbar__links { display: flex; align-items: center; list-style: none; gap: 0.1rem; }
@@ -514,6 +514,7 @@ body.skiptranslate .skiptranslate {
 .conference__heading { margin-bottom: 1.4rem; }
 .conference__body { font-size: 0.98rem; line-height: 1.75; color: var(--soil); margin-bottom: 1rem; }
 .conference__btn-row { margin-top: 1.5rem; }
+.conference__sps-films { padding-bottom: 3.5rem; }
 
 .agenda { position: relative; z-index: 1; background: rgba(250,244,232,0.12); border: 1px solid rgba(194,168,120,0.42); border-radius: var(--radius-lg); padding: clamp(1.4rem, 3vw, 2.4rem); box-shadow: 0 14px 34px rgba(26,20,16,0.07); }
 .agenda__header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(194,168,120,0.3); }
@@ -952,6 +953,82 @@ body.skiptranslate .skiptranslate {
 .heritage-card__outputs { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
 .heritage-card__outputs li { font-size: 0.82rem; color: var(--soil); display: flex; align-items: center; gap: 0.5rem; }
 .heritage-card__outputs li::before { content: "—"; color: var(--turmeric-gold); flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   SANGAM TALKS — premium poster cards
+═══════════════════════════════════════════════════════════ */
+.talks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.6rem;
+}
+.talk-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-brown);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  display: flex;
+  flex-direction: column;
+}
+.talk-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--turmeric-gold);
+}
+.talk-card__poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--near-black);
+}
+.talk-card__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.talk-card:hover .talk-card__poster img { transform: scale(1.045); }
+.talk-card__poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(15,10,6,0.72) 100%);
+  pointer-events: none;
+}
+.talk-card__poster-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 1;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.36rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(250, 244, 232, 0.92);
+  color: var(--near-black);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+}
+.talk-card__body { padding: 1.5rem 1.5rem 1.7rem; display: flex; flex-direction: column; flex: 1; }
+.talk-card__top { padding: 1.9rem 1.9rem 0; }
+.talk-card__top + .talk-card__body { padding-top: 0.9rem; }
+.talk-card__pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--muted-blue, #5a6b7a);
+  opacity: 0.8;
+}
 
 /* ═══════════════════════════════════════════════════════════
    JOIN
@@ -1394,8 +1471,9 @@ body.skiptranslate .skiptranslate {
   .navbar__burger { display: flex; }
   .navbar__drawer { display: flex; }
   .navbar__inner { padding: 0 1.25rem; gap: 0.6rem; }
-  .navbar__brand-text { max-width: 150px; overflow: hidden; }
-  .navbar__brand-sub { font-size: 0.5rem; letter-spacing: 3.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .navbar__brand-text { max-width: 190px; overflow: hidden; }
+  .navbar__brand-name { font-size: 1rem; overflow: hidden; text-overflow: ellipsis; }
+  .navbar__brand-sub { font-size: 0.5rem; letter-spacing: 0.14em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .lang-switcher { margin-left: 0.2rem; }
   .lang-switcher__label { letter-spacing: 0.06em; }
   .lang-switcher .goog-te-gadget-simple { padding: 0.34rem 0.45rem !important; }

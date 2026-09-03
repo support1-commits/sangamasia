@@ -6,17 +6,17 @@ import { useSiteLanguage } from "../lib/siteLanguage";
 const advisors = [
   {
     name: "Vijay Pratap Singh Aditya",
-    role: "Co-Founder — CEO, The Heritage Foundation / EKgaon Technologies, New Delhi",
+    role: "Co-Founder — Founder, The Heritage Foundation; Co-Founder & CEO, Ekgaon Technologies, New Delhi; Member, Executive Committee, AIMA",
     email: "vijay.aditya@gmail.com",
   },
   {
     name: "Surajit Sarkar",
-    role: "Co-Founder — Associate Professor, Centre for Community Knowledge, Ambedkar University Delhi; President, Oral History Association of India; Vice-President, AIMA",
+    role: "Co-Founder — Curator, Kerala Museum, Kochi. Formerly Associate Professor, Centre for Community Knowledge, Ambedkar University Delhi; President, Oral History Association of India; Vice-President, AIMA",
     email: "surajit.sarkar@gmail.com",
   },
   {
     name: "Nerupama Modwel",
-    role: "Co-Founder — Principal Director, ICH Division, INTACH",
+    role: "Co-Founder — Principal Director, ICH Division, INTACH, New Delhi",
     email: "intangibleheritage1@gmail.com",
   },
 ];

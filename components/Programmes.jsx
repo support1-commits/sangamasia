@@ -4,10 +4,13 @@ import { Images, Mic, Landmark, MapPin, ArrowRight, ExternalLink, Calendar } fro
 import { useSiteLanguage } from "../lib/siteLanguage";
 
 const talks = [
-  { title: "Virasat -- Common Property Resources: Heritage of India's Pastoral Lands, Pastoralists and Traditions", date: "11 September 2023, Monday, 3:00 PM", speakers: "Dr. P K Biswas, Vice Chancellor, Jagran Lakecity University, Bhopal in conversation with Mr. Vijay Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", link: "https://youtu.be/W-YfhWYCUD8?si=CET6HzQfqALZrAqt" },
-  { title: "Chunauti -- Saving Soil for the Future: Lessons from Traditions", date: "7 July 2023, Friday, 3:00 PM", speakers: "Dr. Sultan Ahmed Ismail, Member, State Planning Commission, Government of Tamil Nadu, President of Gandhi Ashram, Thiruchengode in conversation with Mr. Surajit Sarkar, Vice President, AIMA", link: "https://youtu.be/rF20y2uK6qo?si=jOtYq_OLLEVaPBPR" },
-  { title: "Virasat -- Pre-Canal Agriculture in Punjab: Crops, Traditions and Practices", date: "21 September 2023, Thursday, 3:00 PM", speakers: "Mr. Umendra Dutt, Founder, Kheti Virasat Mission, Faridkot, Punjab in conversation with Ms. Nerupama Y Modwel, Director, Intangible Heritage Division, INTACH, New Delhi", link: "https://youtu.be/3WJEzAs_YVo?si=jWpe3HtM5SDsRYMV" },
+  { title: "Virasat -- Traditional Seeds and Their Role in Sustainable Farming", date: "21 June 2024, Friday, 3:00 PM", speakers: "Dr. Anupam Paul, Crop Conserver & Proponent of Sustainable Agriculture, former Additional Director of Agriculture (P), Directorate of Agriculture, Govt of West Bengal, in conversation with Mr Surajit Sarkar, Coordinator, SANGAM and Mr Vijay Pratap Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", poster: "/lecture/1.jpeg", link: null },
+  { title: "Virasat -- Common Property Resources: Heritage of India's Pastoral Lands, Pastoralists and Traditions", date: "11 September 2023, Monday, 3:00 PM", speakers: "Dr. P K Biswas, Vice Chancellor, Jagran Lakecity University, Bhopal in conversation with Mr. Vijay Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", poster: "/lecture/2.jpeg", link: "https://youtu.be/W-YfhWYCUD8?si=CET6HzQfqALZrAqt" },
+  { title: "Chunauti -- Saving Soil for the Future: Lessons from Traditions", date: "7 July 2023, Friday, 3:00 PM", speakers: "Dr. Sultan Ahmed Ismail, Member, State Planning Commission, Government of Tamil Nadu, President of Gandhi Ashram, Thiruchengode in conversation with Mr. Surajit Sarkar, Vice President, AIMA", poster: null, link: "https://youtu.be/rF20y2uK6qo?si=jOtYq_OLLEVaPBPR" },
+  { title: "Virasat -- Pre-Canal Agriculture in Punjab: Crops, Traditions and Practices", date: "21 September 2023, Thursday, 3:00 PM", speakers: "Mr. Umendra Dutt, Founder, Kheti Virasat Mission, Faridkot, Punjab in conversation with Ms. Nerupama Y Modwel, Director, Intangible Heritage Division, INTACH, New Delhi", poster: "/lecture/5.jpeg", link: "https://youtu.be/3WJEzAs_YVo?si=jWpe3HtM5SDsRYMV" },
 ];
+
+const defaultTalkPoster = "/lecture/sangam-talk-default.svg";
 
 export default function Programmes() {
   const ref = useRef(null);
@@ -123,20 +126,27 @@ export default function Programmes() {
             curators, researchers and academicians on topics related to oral history and
             agricultural heritage -- an effort to bring lived knowledge systems into the public
             domain. Conducted both online and in-person, with an expert speaker invited to talk in
-            detail on each topic. Six SANGAM Talks are available so far, including these pre-conference talks:
+            detail on each topic. SANGAM Talks recorded so far include:
           </p>
-          <div className="heritage__projects">
+          <div className="talks-grid">
             {talks.map((t, i) => (
-              <article className="heritage-card card" key={i}>
-                <div className="heritage-card__top" style={{ marginBottom: "0.9rem" }}>
-                  <span className="heritage-card__phase">SANGAM Talk</span>
+              <article className="talk-card" key={i}>
+                <div className="talk-card__poster">
+                  <img src={t.poster || defaultTalkPoster} alt={t.title} loading="lazy" />
+                  <span className="talk-card__poster-badge">SANGAM Talk</span>
                 </div>
-                <h3 className="heritage-card__title" style={{ fontSize: "1.05rem" }}>{t.title}</h3>
-                <p className="body-sm" style={{ marginBottom: "0.6rem" }}>{t.date}</p>
-                <p className="heritage-card__desc">{t.speakers}</p>
-                <a href={t.link} target="_blank" rel="noopener noreferrer" className="prog-card__link">
-                  Watch <ExternalLink size={13} strokeWidth={2} />
-                </a>
+                <div className="talk-card__body">
+                  <h3 className="heritage-card__title" style={{ fontSize: "1.05rem" }}>{t.title}</h3>
+                  <p className="body-sm" style={{ marginBottom: "0.6rem" }}>{t.date}</p>
+                  <p className="heritage-card__desc">{t.speakers}</p>
+                  {t.link ? (
+                    <a href={t.link} target="_blank" rel="noopener noreferrer" className="prog-card__link">
+                      Watch <ExternalLink size={13} strokeWidth={2} />
+                    </a>
+                  ) : (
+                    <span className="talk-card__pending">Recording to be added</span>
+                  )}
+                </div>
               </article>
             ))}
           </div>
