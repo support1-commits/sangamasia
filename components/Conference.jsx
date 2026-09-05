@@ -68,7 +68,7 @@ const days = [
       { h: "AIMA Agricultural Museums Keynote", items: ["Agricultural museums as a bridge between land traditions and everyone else? – Peter Watson and Dr. Debra Reid, USA (AIMA) (45 mins)."] },
       { h: "Digital Storytelling Futures at Agricultural Museum – A Discussion", items: ["Ms. Vaishali Neotia and Prof. Surajit Sarkar (45 mins)."] },
       { h: "PAU", items: ["Experiences with University Museums."] },
-      { h: "Moderated Discussion", items: ["Agriculture Museums, collections and improving storytelling possibilities."] },
+      { h: "Moderated Discussion", items: ["Agricultural Museums, collections and improving storytelling possibilities."] },
       { h: "Closing Session", items: ["PAU Auditorium."] },
       { h: "Museum Visits @PAU", items: ["Museum Visits @PAU."] },
     ],
@@ -87,7 +87,7 @@ const outcomes = [
   "Facilitate upgradation of agricultural museums and heritage centres across the country, by connecting museum and digital technology professionals with interested agricultural institutions and museums.",
   "Connect social scientists and museum professionals to agricultural institutions and universities at a time when the agriculture sector is largely staffed by scientists.",
   "Create a network of agricultural institution partners to undertake a countrywide farmer-based oral history research and documentation project on transformation in land development, water practices, fertilisers, helpful seeds and other transformative events in individual farmers' histories.",
-  "Facilitate development of a digital Agriculture Communication Network for a wider audience -- farmers' organisations, agricultural universities, museums, heritage centres, agriculture NGOs, academics and interested members of the public.",
+  "Facilitate development of a digital Agricultural Communication Network for a wider audience -- farmers' organisations, agricultural universities, museums, heritage centres, agriculture NGOs, academics and interested members of the public.",
 ];
 
 const partners = {
@@ -137,27 +137,27 @@ const films = [
 ];
 
 const spsFilms = [
-  { title: "P for Pyaaz, P for Paisa, P for Paani", duration: "56:14", subject: "Agriculture and Groundwater", link: "https://www.youtube.com/watch?v=NZApcnC20Os" },
-  { title: "The Bird, The Priest and The Sixteen Millet Thieves", duration: "57:39", subject: "Agriculture", link: "https://www.youtube.com/watch?v=nchdF8LE5BA" },
-  { title: "NPM Chana (Pesticide Free Chickpea)", duration: "08:07", subject: "Agriculture", link: "https://www.youtube.com/watch?v=ZOX7kv2SL_k" },
-  { title: "Sona Mati -- Nature's Bounty", duration: "03:41", subject: "Agriculture", link: "https://www.youtube.com/watch?v=uJ35WzyHy8U" },
-  { title: "Ghol Anmol", duration: "03:38", subject: "Agriculture", link: "https://www.youtube.com/watch?v=wtsfOyHS5JI" },
-  { title: "Jowar Gatha (The Jowar Ballad)", duration: "30:03", subject: "Agriculture", link: "https://youtu.be/7CN1rZ--0e0" },
-  { title: "The Magic of Five Leaves (Paanch Pattiyon Ka Mantra)", duration: "04:27", subject: "Agriculture", link: "https://www.youtube.com/watch?v=dPcpzV5IieU" },
-  { title: "Keetnashak Ya Vinashak", duration: "33:42", subject: "Agriculture", link: "https://www.youtube.com/watch?v=G8v8BE3uF7Y&t=7s" },
-  { title: "Sitaram Kaka ka Gajab Andaz", duration: "14:02", subject: "Agriculture", link: "https://www.youtube.com/watch?v=D3Z5q5n8tGg" },
-  { title: "Mishrit Fasal (Mix Cropping)", duration: "09:07", subject: "Agriculture", link: "https://www.youtube.com/watch?v=LzqVs0p7GXI" },
-  { title: "Safe Earth", duration: "16:31", subject: "Agriculture", link: "https://www.youtube.com/watch?v=pVVGaMA1soE" },
-  { title: "Mhari Topli Ma: Kumudini", duration: "11:36", subject: "Edible Wild Green", link: "https://youtu.be/S52cme85TBQ" },
-  { title: "Mhari Topli Ma: Chauli", duration: "07:09", subject: "Edible Wild Green", link: "https://youtu.be/VaGH0Z2YwI8" },
-  { title: "Mhari Topli Ma: Bans Bhamori", duration: "13:17", subject: "Edible Wild Green", link: "https://youtu.be/P5BhsrA1PGA" },
-  { title: "Mhari Topli Ma: Ambadi", duration: "06:13", subject: "Agriculture, Local Food", link: "https://youtu.be/GRjFMYiMWSA" },
-  { title: "Girwala Ke Anokhe Rang Kaka aur Kaki Ke Sang", duration: "04:10", subject: "Edible Wild Green", link: "https://youtu.be/qgbjn9rUKxI" },
-  { title: "Flower of Mother Earth", duration: "16:22", subject: "Edible Wild Green", link: "https://youtu.be/4XJCKdGwVDs" },
-  { title: "Loo se Kaki Bemaar, Kare Kaka Desi Upchaar", duration: "04:27", subject: "Local Food", link: "https://youtu.be/oR8mL91KYLQ" },
-  { title: "Mhari Topli Ma: Ber", duration: "09:20", subject: "Edible Wild Green", link: "https://youtu.be/ogxDL50umuo" },
-  { title: "Mhari Topli Ma: Basta", duration: "08:09", subject: "Edible Wild Green", link: "https://youtu.be/5mgJT3dXqo8" },
-  { title: "Mhari Topli Ma: Phang", duration: "12:18", subject: "Edible Wild Green", link: "https://youtu.be/sBODczP_G-g" },
+  { title: "P for Pyaaz, P for Paisa, P for Paani", duration: "56:14", subject: "Agriculture and Groundwater", description: "A film about affluent and local farmers in the Narmada valley who begin growing water-intensive onions for cash income. It explores the impact of this shift on the already depleting groundwater table in the region.", link: "https://www.youtube.com/watch?v=NZApcnC20Os" },
+  { title: "The Bird, The Priest and The Sixteen Millet Thieves", duration: "57:39", subject: "Agriculture", description: "A film that follows the life cycle of Rala (Foxtail Millet) -- an indigenous crop -- through ballads and present-day stories. It explores the dwindling cultivation of this grain alongside themes of rain, pests, markets and changing diets.", link: "https://www.youtube.com/watch?v=nchdF8LE5BA" },
+  { title: "NPM Chana (Pesticide Free Chickpea)", duration: "08:07", subject: "Agriculture", description: "Mira Bai has been practicing non-pesticide farming for three years, making affordable bio-pest repellents from leaves found around her farm. The film shows how chemical-free farming protects both soil health and the farmer's pocket.", link: "https://www.youtube.com/watch?v=ZOX7kv2SL_k" },
+  { title: "Sona Mati -- Nature's Bounty", duration: "03:41", subject: "Agriculture", description: "This film portrays the story of a farmer in a remote dryland area who enriches her barren soil using nature's own resources. For the first time in 20 years, she witnesses a bumper harvest.", link: "https://www.youtube.com/watch?v=uJ35WzyHy8U" },
+  { title: "Ghol Anmol", duration: "03:38", subject: "Agriculture", description: "A short film showing a nature-based pest repellent used for tuar daal (pigeon pea). The solution is economical, safe and healthy -- an alternative to chemical pesticides.", link: "https://www.youtube.com/watch?v=wtsfOyHS5JI" },
+  { title: "Jowar Gatha (The Jowar Ballad)", duration: "30:03", subject: "Agriculture", description: "A film celebrating the indigenous varieties of sorghum and millets and the rich traditions of food, songs and rituals built around them. It also documents the lament of farmers as Jowar cultivation declines in the drylands of Central India.", link: "https://youtu.be/7CN1rZ--0e0" },
+  { title: "The Magic of Five Leaves (Paanch Pattiyon Ka Mantra)", duration: "04:27", subject: "Agriculture", description: "Sumanbai, a farmer in a tribal village of Madhya Pradesh, uses a low-cost, environment-friendly alternative to toxic pesticides for her crops. She is one of 4,000 farmers practicing No Pesticide Management (NPM) farming.", link: "https://www.youtube.com/watch?v=dPcpzV5IieU" },
+  { title: "Keetnashak Ya Vinashak", duration: "33:42", subject: "Agriculture", description: "A local farmer-turned-filmmaker documents how chemical pesticides and weedicides are rapidly entering even the most remote tribal villages of Central India. The film exposes the dangers of high input costs, environmental damage and health risks that follow.", link: "https://www.youtube.com/watch?v=G8v8BE3uF7Y&t=7s" },
+  { title: "Sitaram Kaka ka Gajab Andaz", duration: "14:02", subject: "Agriculture", description: "Sitaram, a PWD line-man, collects fallen forest leaves and converts them into rich compost for his farm -- improving yield and soil fertility season after season. The film is the story of one man's quiet, ingenious relationship with organic farming.", link: "https://www.youtube.com/watch?v=D3Z5q5n8tGg" },
+  { title: "Mishrit Fasal (Mix Cropping)", duration: "09:07", subject: "Agriculture", description: "Small farmers Munni Bai and Gattu rediscover that the traditional practice of mixed cropping -- sorghum, millets, lentils and vegetables grown together -- is their most reliable shield against food insecurity. The film shows how ancient farming wisdom answers modern climate uncertainty.", link: "https://www.youtube.com/watch?v=LzqVs0p7GXI" },
+  { title: "Safe Earth", duration: "16:31", subject: "Agriculture", description: "A film sharing the experiences of small and marginal farmers who have adopted integrated bio-pest management through Non-pesticide Management (NPM) farming. It shows how this approach protects not just human health but also the long-term fertility of the soil.", link: "https://www.youtube.com/watch?v=pVVGaMA1soE" },
+  { title: "Mhari Topli Ma: Kumudini", duration: "11:36", subject: "Edible Wild Green", description: "Fearless Savitri Bai dives into a pond to harvest kumudini -- a nutritious wild edible -- as part of the \"What's in My Basket\" series. The film takes viewers on a water ride through a haunted pond in search of these rare edible pearls.", link: "https://youtu.be/S52cme85TBQ" },
+  { title: "Mhari Topli Ma: Chauli", duration: "07:09", subject: "Edible Wild Green", description: "A film about Chauli -- a traditional wild edible herb that grows as a weed and is full of nutrition. It raises the alarm that in our rush to clear weeds from farms, we are losing irreplaceable food knowledge.", link: "https://youtu.be/VaGH0Z2YwI8" },
+  { title: "Mhari Topli Ma: Bans Bhamori", duration: "13:17", subject: "Edible Wild Green", description: "Elders from Ratanpur village, on the banks of the Narmada, forage the forest for oyster mushrooms with an expertise passed down through generations. The film captures their passion and wisdom as a living tradition of wild food knowledge.", link: "https://youtu.be/P5BhsrA1PGA" },
+  { title: "Mhari Topli Ma: Ambadi", duration: "06:13", subject: "Agriculture, Local Food", description: "Hari Bai from a remote tribal village in the Narmada Valley shares her love for ambadi (Roselle) -- a tangy seasonal vegetable she credits for her energy and good health in old age. The film celebrates local food as both nutrition and cultural identity.", link: "https://youtu.be/GRjFMYiMWSA" },
+  { title: "Girwala Ke Anokhe Rang Kaka aur Kaki Ke Sang", duration: "04:10", subject: "Edible Wild Green", description: "Shankar Kaka of Mansinghpura demonstrates how the flowers of Indian Laburnum (Amaltas) -- beautiful and nutritious -- can be gathered and turned into a delicious curry. A short, joyful portrait of edible wild knowledge alive in everyday village life.", link: "https://youtu.be/qgbjn9rUKxI" },
+  { title: "Flower of Mother Earth", duration: "16:22", subject: "Edible Wild Green", description: "Natthu kaka waits for the rains with much hope each year, hoping to find the wild mushrooms (jameen maa ka phool) which spring out when the rains hit the ground. But with receding forests and erratic rains, it is getting difficult to find them. This film is a story of his relationship with the forests and the times he has spent in its lap.", link: "https://youtu.be/4XJCKdGwVDs" },
+  { title: "Loo se Kaki Bemaar, Kare Kaka Desi Upchaar", duration: "04:27", subject: "Local Food", description: "This film highlights the fruit Billa (Wood Apple), which is collected from the forests, and the juice prepared from it to beat the heat. The film covers the benefits, memories and experiences of an elder man in Laxminagar village.", link: "https://youtu.be/oR8mL91KYLQ" },
+  { title: "Mhari Topli Ma: Ber", duration: "09:20", subject: "Edible Wild Green", description: "As winter arrives, Khitli Bai carefully guards the Bor (Jujube) trees in her homestead, saving the fruit to share generously with friends and relatives who eagerly wait for it each season. A warm, intimate portrait of the bonds between people, trees and seasonal food traditions.", link: "https://youtu.be/ogxDL50umuo" },
+  { title: "Mhari Topli Ma: Basta", duration: "08:09", subject: "Edible Wild Green", description: "When the monsoon recedes, Kala Bai and her friend row across the Narmada River into the forest to collect tender bamboo shoots -- a seasonal delicacy cherished by their entire village. The film captures this annual ritual of foraging as an act of both community and celebration.", link: "https://youtu.be/5mgJT3dXqo8" },
+  { title: "Mhari Topli Ma: Phang", duration: "12:18", subject: "Edible Wild Green", description: "Phang (Midnapore creeper) grows wild during monsoon and has long been a favourite food of the older generation -- preferred even over fish and meat. Kehendi fears that as younger generations lose both the taste and the knowledge of cooking it, this wild food tradition may soon disappear forever.", link: "https://youtu.be/sBODczP_G-g" },
 ];
 
 function getYouTubeId(url) {
@@ -519,6 +519,7 @@ export default function Conference() {
                       <span>{f.duration}</span>
                     </div>
                     <h3>{f.title}</h3>
+                    <p>{f.description}</p>
                   </div>
                 </a>
               );

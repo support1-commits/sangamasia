@@ -16,9 +16,8 @@ const groups = [
       { country: "Pakistan", note: "In dialogue with agricultural heritage institutions — membership in development." },
       { country: "Bhutan", note: "Documentation of traditional Bhutanese farming practices and seed heritage underway." },
       { country: "Afghanistan", note: "Connections with agricultural heritage preservation communities." },
-      { country: "Maldives", note: "Engagement with traditional island farming and fishing heritage communities." },
-      { country: "Thailand", note: "Network member nation." },
-      { country: "Indonesia", note: "Network member nation." },
+      { country: "Maldives", note: "Engagement with traditional island farming and fishing heritage communities." }
+  
     ],
   },
   {
@@ -29,6 +28,8 @@ const groups = [
     rows: [
       { country: "Africa", note: "Outreach member — engagement with agricultural heritage communities across the continent." },
       { country: "South America", note: "Outreach member — engagement with agricultural heritage communities across the continent." },
+      { country: "Thailand", note: "Network member nation." },
+      { country: "Indonesia", note: "Network member nation." },
       { country: "Japan", note: "Outreach member." },
       { country: "Korea", note: "Outreach member." },
       { country: "China", note: "Outreach member." },

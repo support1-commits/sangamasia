@@ -62,7 +62,7 @@ const platforms = [
     icon: FacebookIcon,
     handle: "CIMA 2023",
     links: [
-      { label: "Page", href: "https://www.facebook.com/profile.php?id=100093794475295&mibextid=ZbWKwL" },
+      { label: "Page", href: "https://www.facebook.com/profile.php?id=100093807794861" },
     ],
   },
   {

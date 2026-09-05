@@ -1,26 +1,36 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Images, Mic, Landmark, MapPin, ArrowRight, ExternalLink, Calendar } from "lucide-react";
+import { Images, Mic, Landmark, MapPin, ArrowRight, ExternalLink, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { useSiteLanguage } from "../lib/siteLanguage";
 
 const talks = [
   { title: "Virasat -- Traditional Seeds and Their Role in Sustainable Farming", date: "21 June 2024, Friday, 3:00 PM", speakers: "Dr. Anupam Paul, Crop Conserver & Proponent of Sustainable Agriculture, former Additional Director of Agriculture (P), Directorate of Agriculture, Govt of West Bengal, in conversation with Mr Surajit Sarkar, Coordinator, SANGAM and Mr Vijay Pratap Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", poster: "/lecture/1.jpeg", link: null },
   { title: "Virasat -- Common Property Resources: Heritage of India's Pastoral Lands, Pastoralists and Traditions", date: "11 September 2023, Monday, 3:00 PM", speakers: "Dr. P K Biswas, Vice Chancellor, Jagran Lakecity University, Bhopal in conversation with Mr. Vijay Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", poster: "/lecture/2.jpeg", link: "https://youtu.be/W-YfhWYCUD8?si=CET6HzQfqALZrAqt" },
-  { title: "Chunauti -- Saving Soil for the Future: Lessons from Traditions", date: "7 July 2023, Friday, 3:00 PM", speakers: "Dr. Sultan Ahmed Ismail, Member, State Planning Commission, Government of Tamil Nadu, President of Gandhi Ashram, Thiruchengode in conversation with Mr. Surajit Sarkar, Vice President, AIMA", poster: null, link: "https://youtu.be/rF20y2uK6qo?si=jOtYq_OLLEVaPBPR" },
+  { title: "Chunauti -- Saving Soil for the Future: Lessons from Traditions", date: "7 July 2023, Friday, 3:00 PM", speakers: "Dr. Sultan Ahmed Ismail, Member, State Planning Commission, Government of Tamil Nadu, President of Gandhi Ashram, Thiruchengode in conversation with Mr. Surajit Sarkar, Vice President, AIMA", poster: "/lecture/7.jpeg", link: "https://youtu.be/rF20y2uK6qo?si=jOtYq_OLLEVaPBPR" },
+  { title: "SANGAM Talks - 'Heritage~Agro-forestry Heritage of India' - In conversation with Dr. Madhu Verma", date: "24 August 2023, Thursday, 3:00 PM", speakers: "Dr. Madhu Verma, Senior Economic Adviser, Iora Ecological Solutions and former Professor, IIFM, in conversation with Mr. Vijay Pratap Singh Aditya, CEO & Co-founder, Ekgaon Group and The Heritage Foundation", poster: "/lecture/4.jpeg", link: "https://www.youtube.com/watch?v=qwlqYI30AtU" },
   { title: "Virasat -- Pre-Canal Agriculture in Punjab: Crops, Traditions and Practices", date: "21 September 2023, Thursday, 3:00 PM", speakers: "Mr. Umendra Dutt, Founder, Kheti Virasat Mission, Faridkot, Punjab in conversation with Ms. Nerupama Y Modwel, Director, Intangible Heritage Division, INTACH, New Delhi", poster: "/lecture/5.jpeg", link: "https://youtu.be/3WJEzAs_YVo?si=jWpe3HtM5SDsRYMV" },
+  { title: "SANGAM TALKS- VIRASAT- In conversation with Mr. Babu Lal Dahiya, Padma Shri awardee and curator", date: "2 October 2023, Monday, 3:00 PM", speakers: "Mr. Babu Lal Dahiya, Padma Shri awardee and curator", poster: "/lecture/6.jpeg", link: "https://www.youtube.com/watch?v=kgr7TZCo9Xc" },
 ];
 
 const defaultTalkPoster = "/lecture/sangam-talk-default.svg";
 
 export default function Programmes() {
   const ref = useRef(null);
+  const talksTrackRef = useRef(null);
   const [vis, setVis] = useState(false);
+  const [expandedTalks, setExpandedTalks] = useState({});
   const locale = useSiteLanguage();
   const copy = {
-    en: { badge: "Programmes & Events", title: ["Heritage in", "Action"], intro: "SANGAM is hosting several events and programmes to expand its network, reaching out to people from cities to the hinterland.", upcoming: "Upcoming Event", filmTitle: "SANGAM Agriculture Heritage Film Festival", festivalText: "SANGAM is organising a three-day agricultural film festival across India...", exhibitions: "Exhibitions", talks: "SANGAM Expert Lecture Series" },
+    en: { badge: "Programmes & Events", title: ["Heritage in", "Action"], intro: "SANGAM is hosting several events and programmes to expand its network, reaching out to people from cities to the hinterland.", upcoming: "Upcoming Event", filmTitle: "SANGAM Agricultural Heritage Film Festival", festivalText: "SANGAM is organising a three-day agricultural film festival across India...", exhibitions: "Exhibitions", talks: "SANGAM Expert Lecture Series" },
     hi: { badge: "कार्यक्रम और कार्यक्रम", title: ["विरासत", "क्रिया में"], intro: "संगम अपनी नेटवर्क का विस्तार करने के लिए कई कार्यक्रम और आयोजन आयोजित कर रहा है, शहरों से लेकर ग्रामीण क्षेत्रों तक लोगों तक पहुँच रहा है।", upcoming: "आगामी कार्यक्रम", filmTitle: "संगम कृषि विरासत फिल्म फेस्टिवल", festivalText: "संगम भारत भर में तीन दिवसीय कृषि फिल्म फेस्टिवल आयोजित कर रहा है...", exhibitions: "प्रदर्शनी", talks: "संगम विशेषज्ञ व्याख्यान श्रृंखला" },
     bn: { badge: "প্রোগ্রাম ও ইভেন্ট", title: ["ঐতিহ্য", "ক্রিয়ায়"], intro: "সাংগম তার নেটওয়ার্ক বাড়াতে বিভিন্ন অনুষ্ঠান ও প্রোগ্রাম আয়োজন করছে, শহর থেকে পল্লী পর্যন্ত মানুষকে পৌঁছাচ্ছে।", upcoming: "আসন্ন ইভেন্ট", filmTitle: "সাংগম কৃষি ঐতিহ্য চলচ্চিত্র উৎসব", festivalText: "সাংগম ভারতজুড়ে তিনদিনের কৃষি চলচ্চিত্র উৎসব আয়োজন করছে...", exhibitions: "এক্সিবিশন", talks: "সাংগম বিশেষজ্ঞ বক্তৃতা সিরিজ" },
-  }[locale] || { badge: "Programmes & Events", title: ["Heritage in", "Action"], intro: "SANGAM is hosting several events and programmes to expand its network, reaching out to people from cities to the hinterland.", upcoming: "Upcoming Event", filmTitle: "SANGAM Agriculture Heritage Film Festival", festivalText: "SANGAM is organising a three-day agricultural film festival across India...", exhibitions: "Exhibitions", talks: "SANGAM Expert Lecture Series" };
+  }[locale] || { badge: "Programmes & Events", title: ["Heritage in", "Action"], intro: "SANGAM is hosting several events and programmes to expand its network, reaching out to people from cities to the hinterland.", upcoming: "Upcoming Event", filmTitle: "SANGAM Agricultural Heritage Film Festival", festivalText: "SANGAM is organising a three-day agricultural film festival across India...", exhibitions: "Exhibitions", talks: "SANGAM Expert Lecture Series" };
+  const moveTalks = (direction) => {
+    talksTrackRef.current?.scrollBy({ left: direction * 420, behavior: "smooth" });
+  };
+  const toggleTalkDescription = (index) => {
+    setExpandedTalks((current) => ({ ...current, [index]: !current[index] }));
+  };
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.08 });
     if (ref.current) obs.observe(ref.current);
@@ -128,7 +138,11 @@ export default function Programmes() {
             domain. Conducted both online and in-person, with an expert speaker invited to talk in
             detail on each topic. SANGAM Talks recorded so far include:
           </p>
-          <div className="talks-grid">
+          <div className="talks-carousel">
+            <button type="button" className="talks-carousel__button talks-carousel__button--prev" onClick={() => moveTalks(-1)} aria-label="Previous lecture">
+              <ChevronLeft size={20} strokeWidth={2.2} />
+            </button>
+            <div className="talks-grid" ref={talksTrackRef}>
             {talks.map((t, i) => (
               <article className="talk-card" key={i}>
                 <div className="talk-card__poster">
@@ -139,6 +153,14 @@ export default function Programmes() {
                   <h3 className="heritage-card__title" style={{ fontSize: "1.05rem" }}>{t.title}</h3>
                   <p className="body-sm" style={{ marginBottom: "0.6rem" }}>{t.date}</p>
                   <p className="heritage-card__desc">{t.speakers}</p>
+                  {t.description && (
+                    <div className={`talk-card__description${expandedTalks[i] ? " is-expanded" : ""}`}>
+                      <p>{t.description}</p>
+                      <button type="button" onClick={() => toggleTalkDescription(i)}>
+                        {expandedTalks[i] ? "Read less" : "Read more"}
+                      </button>
+                    </div>
+                  )}
                   {t.link ? (
                     <a href={t.link} target="_blank" rel="noopener noreferrer" className="prog-card__link">
                       Watch <ExternalLink size={13} strokeWidth={2} />
@@ -149,6 +171,10 @@ export default function Programmes() {
                 </div>
               </article>
             ))}
+            </div>
+            <button type="button" className="talks-carousel__button talks-carousel__button--next" onClick={() => moveTalks(1)} aria-label="Next lecture">
+              <ChevronRight size={20} strokeWidth={2.2} />
+            </button>
           </div>
         </div>
 

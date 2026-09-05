@@ -61,7 +61,7 @@ const footerTranslations = {
 const socials = [
   { icon: Camera, label: "Instagram", href: "https://www.instagram.com/sangam.asia?igsh=czNoNzllbWZkYzN1" },
   { icon: Play, label: "YouTube", href: "https://www.youtube.com/@sangam_asia" },
-  { icon: Users, label: "Facebook", href: "https://www.facebook.com/profile.php?id=100093794475295&mibextid=ZbWKwL" },
+  { icon: Users, label: "Facebook", href: "https://www.facebook.com/profile.php?id=100093807794861" },
   { icon: X, label: "X / Twitter", href: "https://x.com/Cima_india2023" },
 ];
 
@@ -79,7 +79,7 @@ export default function Footer() {
                 <Image src="/sangam-logo.png" alt="SANGAM logo" width={32} height={32} className="footer__logo-img" />
               </div>
               <div className="footer__brand-text">
-                <span className="footer__brand-name">SANGAM NETWORK</span>
+                <span className="footer__brand-name"><strong>SANGAM</strong> Network</span>
                 <span className="footer__brand-sub">{copy.brandSub}</span>
               </div>
             </Link>
