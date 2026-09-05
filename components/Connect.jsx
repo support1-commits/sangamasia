@@ -66,7 +66,7 @@ const platforms = [
     name: "Facebook",
     theme: "facebook",
     icon: FacebookIcon,
-    handle: "CIMA 2023",
+    handle: "Sangam Asia",
     links: [
       { label: "Page", href: "https://www.facebook.com/profile.php?id=100093807794861" },
     ],
