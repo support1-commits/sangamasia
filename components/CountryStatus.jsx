@@ -92,9 +92,9 @@ export default function CountryStatus() {
                 <tbody>
                   {g.rows.map((r) => (
                     <tr key={r.country}>
-                      <td style={{ fontWeight: 700 }}>{r.country}</td>
-                      <td className="body-sm">{r.note}</td>
-                      <td>
+                      <td data-label={labels.country} style={{ fontWeight: 700 }}>{r.country}</td>
+                      <td data-label={labels.notes} className="body-sm">{r.note}</td>
+                      <td data-label={labels.status}>
                         <span className={`status-pill ${g.type}`}>
                           <span className="status-pill__dot" />
                           {g.label === "Network Members" ? labels.member : labels.outreach}

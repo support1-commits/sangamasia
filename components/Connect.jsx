@@ -36,6 +36,12 @@ const EmailIcon = (props) => (
   </svg>
 );
 
+const WhatsAppIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden="true">
+    <path d="M12 2.25a9.72 9.72 0 0 0-8.38 14.64L2.25 21.75l5.02-1.32A9.72 9.72 0 1 0 12 2.25Zm0 17.72a7.98 7.98 0 0 1-4.07-1.11l-.29-.17-2.98.78.8-2.9-.19-.3A7.98 7.98 0 1 1 12 19.97Zm4.38-5.99c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.54.12-.16.24-.62.77-.76.93-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.15 1.51.09.46-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z" />
+  </svg>
+);
+
 const platforms = [
   {
     name: "Email",
@@ -84,6 +90,14 @@ const platforms = [
       { label: "Profile", href: "https://x.com/Cima_india2023" },
     ],
   },
+  {
+    name: "WhatsApp",
+    theme: "whatsapp",
+    icon: WhatsAppIcon,
+    handle: "SANGAM Community",
+    comingSoon: true,
+    links: [{ label: "Coming Soon" }],
+  },
 ];
 
 const connectTranslations = {
@@ -124,14 +138,8 @@ export default function Connect() {
               Linktree: copy.labels.linktree,
             }[linkedLabel] || linkedLabel;
 
-            return (
-              <a
-                key={p.name}
-                href={p.links[0].href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`connect-card connect-card--${p.theme} reveal reveal-delay-${Math.min(i + 1, 4)} visible`}
-              >
+            const cardContent = (
+              <>
                 <div className="connect-card__top">
                   <div className="connect-card__icon"><Icon size={22} strokeWidth={2.2} /></div>
                   <span className="connect-card__platform">{p.name}</span>
@@ -150,10 +158,22 @@ export default function Connect() {
                         Profile: copy.labels.profile,
                         Linktree: copy.labels.linktree,
                       })[link.label] || link.label}
-                      <ArrowUpRight size={14} strokeWidth={2} />
+                      {!p.comingSoon && <ArrowUpRight size={14} strokeWidth={2} />}
                     </span>
                   ))}
                 </div>
+              </>
+            );
+
+            const cardClassName = `connect-card connect-card--${p.theme} reveal reveal-delay-${Math.min(i + 1, 4)} visible${p.comingSoon ? " connect-card--coming-soon" : ""}`;
+
+            return p.comingSoon ? (
+              <div key={p.name} className={cardClassName} aria-label={`${p.name}, coming soon`}>
+                {cardContent}
+              </div>
+            ) : (
+              <a key={p.name} href={p.links[0].href} target="_blank" rel="noopener noreferrer" className={cardClassName}>
+                {cardContent}
               </a>
             );
           })}
