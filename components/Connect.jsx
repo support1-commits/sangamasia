@@ -29,10 +29,10 @@ const XIcon = (props) => (
   </svg>
 );
 
-const EmailIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props} aria-hidden="true">
-    <rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2.8" />
-    <path d="m4.5 7 7.5 6 7.5-6" />
+const LinkedInIcon = (props) => (
+  <svg viewBox="0 0 24 24" {...props} aria-hidden="true">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="#0871c4" />
+    <path d="M7.25 9.45h2.67v9.1H7.25v-9.1Zm1.35-4.3a1.55 1.55 0 1 1 0 3.1 1.55 1.55 0 0 1 0-3.1ZM11.65 9.45h2.57v1.2h.04c.35-.67 1.2-1.38 2.47-1.38 2.64 0 3.14 1.74 3.14 4.01v5.27h-2.64v-4.92c0-1.18-.03-2.69-1.64-2.69-1.65 0-1.9 1.29-1.9 2.62v5H11.65v-9.1Z" fill="#fff" />
   </svg>
 );
 
@@ -44,12 +44,12 @@ const WhatsAppIcon = (props) => (
 
 const platforms = [
   {
-    name: "Email",
-    theme: "email",
-    icon: EmailIcon,
-    handle: "cima2023.india@gmail.com",
+    name: "LinkedIn",
+    theme: "linkedin",
+    icon: LinkedInIcon,
+    handle: "SANGAM Asia",
     links: [
-      { label: "Write to us", href: "mailto:cima2023.india@gmail.com" },
+      { label: "View profile", href: "https://www.linkedin.com/in/sangam-asia-154a20434?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
     ],
   },
   {
@@ -95,8 +95,7 @@ const platforms = [
     theme: "whatsapp",
     icon: WhatsAppIcon,
     handle: "SANGAM Community",
-    comingSoon: true,
-    links: [{ label: "Coming Soon" }],
+    links: [{ label: "Join Community", href: "https://chat.whatsapp.com/E6dQjpS7ENPBwE7miVsXsF" }],
   },
 ];
 

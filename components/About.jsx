@@ -97,14 +97,13 @@ export default function About() {
               taken to preserve this heritage by bringing it together. SANGAM is a pan-South Asian
               Agricultural Network of multiple countries that unites agricultural museums, farmers, historians,
               scholars and individuals across the subcontinent to preserve the living heritage of
-              agriculture and farming traditions. The network consists of the countries which
-              includes India, Bangladesh, Afghanistan, Pakistan, Nepal, Bhutan, Maldives and Sri
-              Lanka, Thailand and Indonesia. South Asia is connected by a shared heritage and
-              cultural values. SANGAM is an effort to bring together this heritage on one platform.
-             </p>
-            <p className="body-md about__desc">
-              SANGAM is not only limited to south Asia, it has to reached beyond South Asia to
-              Korea, Japan, China, Africa and South America as its outreached members.
+              agriculture and farming traditions. The network is structured into three categories:
+              Network Members, Associate Network Members, and Outreach. Network Members include
+              India, Bangladesh, Afghanistan, Pakistan, Nepal, Bhutan, Maldives and Sri Lanka.
+              Associate Network Members include Thailand and Indonesia. Outreach members extend the
+              network beyond South Asia to Korea, Japan, China, Africa and South America. South Asia
+              is connected by a shared heritage and cultural values, and SANGAM is an effort to bring
+              together this heritage on one platform.
             </p>
             <p className="body-md about__desc">
               Through SANGAM we are building a community of individuals and organizations that are

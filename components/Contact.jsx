@@ -101,7 +101,7 @@ export default function Contact() {
                 <div className="contact__info-icon icon-box terracotta"><Mail size={17} strokeWidth={2} /></div>
                 <div>
                   <span className="contact__info-label">{copy.general}</span>
-                  <a href="mailto:info@sangam.heritage.org" className="contact__info-value">info@sangam.heritage.org</a>
+                  <a href="mailto:info@sangam.asia" className="contact__info-value">info@sangam.asia</a>
                 </div>
               </div>
               <div className="contact__info-item">
@@ -152,7 +152,7 @@ export default function Contact() {
               <ul className="contact__list">
                 {copy.collaboration.map((item, idx) => <li key={idx}>{item}</li>)}
               </ul>
-              <a href="mailto:info@sangam.heritage.org" className="contact__cta-link">
+              <a href="mailto:info@sangam.asia" className="contact__cta-link">
                 {copy.send} <ArrowRight size={14} strokeWidth={2} />
               </a>
             </div>

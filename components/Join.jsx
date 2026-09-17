@@ -1,7 +1,16 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { GraduationCap, Microscope, Handshake, Wheat, FileText, Send, Users } from "lucide-react";
 import { useSiteLanguage } from "../lib/siteLanguage";
+
+const pdfs = {
+  membership: "/pdf/Membership Form.pdf",
+  fellowship: [
+    "/pdf/SANGAM_FELLOWSHIP FORM.pdf",
+    "/pdf/SANGAM_Fellowship Guidelines.pdf",
+  ],
+};
 
 const cards = [
   {
@@ -9,18 +18,25 @@ const cards = [
     desc: "Open to agricultural museums, heritage institutions, seed banks, tool museums, living heritage farms and any organisation engaged in preserving agricultural heritage across South Asia.",
     details: ["Museums & heritage institutions", "Seed banks & tool museums", "Living heritage farms", "Membership form / Google form attached in this section"],
     featured: false,
+    formTitle: "Membership Form ",
+    pdf: pdfs.membership,
+    email: "info@sangam.asia",
   },
   {
     icon: Microscope, cls: "gold", type: "Fellowship", tagline: "Research, Documentation, Digital Heritage",
     desc: "Open to researchers, academics, heritage scholars, oral historians and professionals who wish to contribute to SANGAM's documentation, research and knowledge-building work.",
     details: ["Research Fellowship -- agricultural heritage, seed history, tool culture, oral traditions", "Documentation Fellowship -- oral historians, ethnographers, field researchers", "Digital Heritage Fellowship -- digital preservation, archiving, online presentation"],
     featured: true,
+    formTitle: "Fellowship Form",
+    pdfs: pdfs.fellowship,
+    email: "info@sangam.asia",
   },
   {
     icon: GraduationCap, cls: "", type: "Internship", tagline: "Learn by Doing",
     desc: "Hands-on experience in agricultural heritage research, documentation and network management, open to students and early-career professionals.",
     details: ["Sociology & heritage studies", "History & agriculture", "Rural studies & environmental humanities", "Timeline to be updated"],
     featured: false,
+    noInternship: true,
   },
   {
     icon: Handshake, cls: "terracotta", type: "Partner", tagline: "Partner Organisations",
@@ -32,13 +48,16 @@ const cards = [
 
 const steps = [
   { icon: FileText, title: "Step 1 -- Fill the Expression of Interest Form", desc: "Download the SANGAM Membership Expression of Interest Form from this page, fill it in with details of your institution, collection and areas of interest, and attach recent photographs of your collection or heritage site." },
-  { icon: Send, title: "Step 2 -- Send Your Application", desc: "Email your completed form and photographs to info@sangam.heritage.org with the subject line: 'SANGAM Membership Application -- [Your Institution Name]'." },
+  { icon: Send, title: "Step 2 -- Send Your Application", desc: "Email your completed form and photographs to info@sangam.asia with the subject line: 'SANGAM Membership Application -- [Your Institution Name]'." },
   { icon: Users, title: "Step 3 -- Connect with the SANGAM Team", desc: "A member of the SANGAM advisory team will contact you within 7 working days to discuss your membership, answer questions and guide you through next steps. Once confirmed, your institution will be profiled and featured on sangam.asia." },
 ];
 
 export default function Join() {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
+  const [showInternshipAlert, setShowInternshipAlert] = useState(false);
+  const [showPartnerForm, setShowPartnerForm] = useState(false);
+  const [partnerForm, setPartnerForm] = useState({ email: "", subject: "", message: "" });
   const locale = useSiteLanguage();
   const copy = {
     en: { badge: "Join SANGAM", title: ["Be Part of Something", "Rooted & Lasting"], intro: "SANGAM is a living, growing network and it needs people like you. Whether you are a museum, a seed keeper, a researcher, a student, a farmer or an organisation that cares about agricultural heritage, there is a place for you in SANGAM. Agricultural heritage cannot be preserved by institutions alone -- it requires a community of scholars, farmers, students, professionals and passionate individuals working together across borders, disciplines and generations. Join us.", step: "How to Join -- Three Steps", open: "Open Positions", openText: "SANGAM periodically opens positions for coordinators, researchers, and programme officers. Check back regularly or contact us to express interest.", view: "View Open Positions" },
@@ -50,6 +69,22 @@ export default function Join() {
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
+
+  const handlePartnerSubmit = (event) => {
+    event.preventDefault();
+    const email = partnerForm.email.trim();
+    const subject = encodeURIComponent(partnerForm.subject.trim() || "Become a partner enquiry");
+    const body = encodeURIComponent(
+      `Email ID: ${email}\n\nSubject: ${partnerForm.subject.trim() || "Become a partner enquiry"}\n\nMessage:\n${partnerForm.message.trim() || "Interested in partnering with SANGAM."}\n\nPlease send this inquiry to: info@sangam.asia`
+    );
+
+    if (email) {
+      window.location.href = `mailto:info@sangam.asia?subject=${subject}&body=${body}`;
+    }
+
+    setShowPartnerForm(false);
+    setPartnerForm({ email: "", subject: "", message: "" });
+  };
 
   return (
     <section className="join" ref={ref}>
@@ -63,19 +98,181 @@ export default function Join() {
         </div>
 
         <div className="join__grid">
-          {cards.map((c, i) => (
-            <article key={i} className={`join-card card${c.featured ? " featured" : ""} reveal reveal-delay-${i + 1}${vis ? " visible" : ""}`}>
-              <div className={`join-card__icon-box icon-box ${c.cls}`}><c.icon size={22} strokeWidth={2} /></div>
-              <div className="join-card__type">{c.type}</div>
-              <div className="join-card__tagline">{c.tagline}</div>
-              <p className="join-card__desc">{c.desc}</p>
-              <ul className="join-card__details">
-                {c.details.map((d, j) => <li key={j} className="join-card__detail">{d}</li>)}
-              </ul>
-              <button className="join-card__cta">Apply for {c.type}</button>
-            </article>
-          ))}
+          {cards.map((c, i) => {
+            const isMembership = c.type === "Membership";
+            const isFellowship = c.type === "Fellowship";
+            const isInternship = c.type === "Internship";
+
+            const triggerDownload = (pdfUrl, filename) => {
+              const link = document.createElement("a");
+              link.href = pdfUrl;
+              link.download = filename;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+            };
+
+            const triggerMultipleDownloads = (pdfList) => {
+              pdfList.forEach((pdfUrl, index) => {
+                const fileName = pdfUrl.split("/").pop();
+                setTimeout(() => triggerDownload(pdfUrl, fileName), index * 300);
+              });
+            };
+
+            return (
+              <article key={i} className={`join-card card${c.featured ? " featured" : ""} reveal reveal-delay-${i + 1}${vis ? " visible" : ""}`}>
+                <div className={`join-card__icon-box icon-box ${c.cls}`}><c.icon size={22} strokeWidth={2} /></div>
+                <div className="join-card__type">{c.type}</div>
+                <div className="join-card__tagline">{c.tagline}</div>
+                <p className="join-card__desc">{c.desc}</p>
+                <ul className="join-card__details">
+                  {c.details.map((d, j) => <li key={j} className="join-card__detail">{d}</li>)}
+                </ul>
+
+                {isInternship ? (
+                  <div className="join-card__action">
+                    <div className="join-card__download-row join-card__download-row--text">
+                      <span className="join-card__form-label-inline">Internship Form</span>
+                      <button
+                        type="button"
+                        className="join-card__cta join-card__cta--inline"
+                        onClick={() => setShowInternshipAlert(true)}
+                      >
+                        Download
+                      </button>
+                    </div>
+                    <p className="join-card__mail-text">
+                      Fill the form and send us to: <a href="mailto:info@sangam.asia">info@sangam.asia</a>
+                    </p>
+                  </div>
+                ) : (
+                  <div className="join-card__action">
+                    {isMembership ? (
+                      <>
+                        <div className="join-card__download-row join-card__download-row--text">
+                          <span className="join-card__form-label-inline">Membership Form</span>
+                          <a
+                            href={c.pdf || "#"}
+                            className="join-card__cta join-card__cta--inline"
+                            download={c.pdf ? c.pdf.split("/").pop() : undefined}
+                            onClick={(event) => {
+                              if (!c.pdf) {
+                                event.preventDefault();
+                              }
+                            }}
+                          >
+                            Download
+                          </a>
+                        </div>
+                        <p className="join-card__mail-text">
+                          Fill the form and send us to: <a href="mailto:info@sangam.asia">info@sangam.asia</a>
+                        </p>
+                      </>
+                    ) : isFellowship ? (
+                      <>
+                        <div className="join-card__download-row join-card__download-row--text">
+                          <span className="join-card__form-label-inline">Fellowship Form</span>
+                          <button
+                            type="button"
+                            className="join-card__cta join-card__cta--inline"
+                            onClick={() => triggerMultipleDownloads(c.pdfs || [])}
+                          >
+                            Download
+                          </button>
+                        </div>
+                        <p className="join-card__mail-text">
+                          Fill the form and send us to: <a href="mailto:info@sangam.asia">info@sangam.asia</a>
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <div className="join-card__download-row join-card__download-row--text">
+                          <span className="join-card__form-label-inline">Become a partner</span>
+                          <button
+                            type="button"
+                            className="join-card__cta join-card__cta--inline"
+                            onClick={() => setShowPartnerForm(true)}
+                          >
+                            Open form
+                          </button>
+                        </div>
+                        <p className="join-card__mail-text">
+                          Share your interest and send a partnership request to <a href="mailto:info@sangam.asia">info@sangam.asia</a>
+                        </p>
+                      </>
+                    )}
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
+
+        {showInternshipAlert && (
+          <div className="join-card__modal-backdrop" onClick={() => setShowInternshipAlert(false)}>
+            <div className="join-card__modal" role="alertdialog" aria-modal="true" onClick={(event) => event.stopPropagation()}>
+              <div className="join-card__modal-header">Internship</div>
+              <div className="join-card__modal-body">Internship is currently not available.</div>
+              <button type="button" className="join-card__modal-close" onClick={() => setShowInternshipAlert(false)}>Close</button>
+            </div>
+          </div>
+        )}
+
+        {showPartnerForm && (
+          <div className="join-card__modal-backdrop" onClick={() => setShowPartnerForm(false)}>
+            <div className="join-card__modal join-card__modal--wide" role="dialog" aria-modal="true" onClick={(event) => event.stopPropagation()}>
+              <div className="join-card__modal-header">Become a partner</div>
+              <form className="join-card__partner-form" onSubmit={handlePartnerSubmit}>
+                <label className="join-card__partner-field">
+                  <span>Email ID</span>
+                  <input
+                    type="email"
+                    value={partnerForm.email}
+                    onChange={(event) => setPartnerForm((prev) => ({ ...prev, email: event.target.value }))}
+                    placeholder="your@email.com"
+                    required
+                  />
+                </label>
+
+                <label className="join-card__partner-field">
+                  <span>Subject</span>
+                  <input
+                    type="text"
+                    value={partnerForm.subject}
+                    onChange={(event) => setPartnerForm((prev) => ({ ...prev, subject: event.target.value }))}
+                    placeholder="Partnership enquiry"
+                    required
+                  />
+                </label>
+
+                <label className="join-card__partner-field">
+                  <span>Message</span>
+                  <textarea
+                    value={partnerForm.message}
+                    onChange={(event) => setPartnerForm((prev) => ({ ...prev, message: event.target.value }))}
+                    placeholder="Tell us about your institution and partnership idea."
+                    rows={5}
+                  />
+                </label>
+
+                <label className="join-card__partner-field join-card__partner-field--file">
+                  <span>Attachment</span>
+                  <input type="file" />
+                </label>
+
+                <div className="join-card__partner-footer">
+                  <div className="join-card__partner-email">SANGAM email ID: <a href="mailto:info@sangam.asia">info@sangam.asia</a></div>
+                  <div className="join-card__partner-actions">
+                    <button type="button" className="join-card__modal-close join-card__modal-close--secondary" onClick={() => setShowPartnerForm(false)}>Cancel</button>
+                    <button type="submit" className="join-card__modal-close">Send by email</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* How to join */}
         <div className={`reveal reveal-delay-2${vis ? " visible" : ""}`} style={{ marginBottom: "3.2rem" }}>
@@ -98,7 +295,7 @@ export default function Join() {
             <h3>{copy.open}</h3>
             <p>{copy.openText}</p>
           </div>
-          <button className="join__positions-btn">{copy.view}</button>
+          <Link href="/no-positions" className="join__positions-btn">{copy.view}</Link>
         </div>
       </div>
     </section>

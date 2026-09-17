@@ -85,8 +85,8 @@ export default function Footer() {
             </Link>
             <p className="footer__tagline">{copy.tagline}</p>
             <div className="footer__meta">
-              <a href="mailto:info@sangam.heritage.org" className="footer__meta-row">
-                <Mail size={15} strokeWidth={2} /> info@sangam.heritage.org
+              <a href="mailto:info@sangam.asia" className="footer__meta-row">
+                <Mail size={15} strokeWidth={2} /> info@sangam.asia
               </a>
               <a href="https://sangam.asia" className="footer__meta-row">
                 <Globe size={15} strokeWidth={2} /> sangam.asia
@@ -123,8 +123,8 @@ export default function Footer() {
           <p className="footer__copy">© {new Date().getFullYear()} SANGAM — South Asian Network of Agricultural Museums & Heritage. All rights reserved.</p>
           <div className="footer__legal">
             <Link href="/contact" className="footer__legal-link">{copy.contact}</Link>
-            <a href="#" className="footer__legal-link">{copy.privacy}</a>
-            <a href="#" className="footer__legal-link">{copy.terms}</a>
+            <Link href="/privacy-policy" className="footer__legal-link">{copy.privacy}</Link>
+            <Link href="/terms-of-use" className="footer__legal-link">{copy.terms}</Link>
           </div>
         </div>
       </div>
