@@ -83,6 +83,7 @@ export default function Museums() {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
   const [active, setActive] = useState(0);
+  const [isManualSelection, setIsManualSelection] = useState(false);
   const locale = useSiteLanguage();
   const copy = {
     en: { badge: "South Asian Network Members", title: ["Custodians of", "Agricultural Memory"], intro: "SANGAM's network includes agricultural museums, seed conservation farms, tool museums, living heritage institutions and individual farmers who are custodians of irreplaceable agricultural knowledge. Each member is a living archive of not just objects, but of practices, stories, memories and ecological wisdom accumulated over centuries.", associated: "Associated Museum Members", associatedTitle: ["Extending the", "Network Across South Asia"], associatedText: "SANGAM's network extends beyond its founding members to include associated museums, heritage institutions and individual keepers from across South Asia, expanding the reach of agricultural memory, practice and community stewardship across the region." },
@@ -97,12 +98,19 @@ export default function Museums() {
   }, []);
 
   useEffect(() => {
+    if (isManualSelection) return;
+
     const autoRotate = setInterval(() => {
       setActive((current) => (current + 1) % museums.length);
     }, 5000);
 
     return () => clearInterval(autoRotate);
-  }, []);
+  }, [isManualSelection]);
+
+  const handleSelectMuseum = (index) => {
+    setActive(index);
+    setIsManualSelection(true);
+  };
 
   const m = museums[active];
 
@@ -120,7 +128,7 @@ export default function Museums() {
         <div className={`museums__layout reveal reveal-delay-2${vis ? " visible" : ""}`}>
           <div className="museums__nav">
             {museums.map((mus, i) => (
-              <button key={i} className={`museum-nav-btn${i === active ? " active" : ""}`} onClick={() => setActive(i)}>
+              <button key={i} className={`museum-nav-btn${i === active ? " active" : ""}`} onClick={() => handleSelectMuseum(i)}>
                 <div className="mnb-icon" style={{ background: mus.bg, color: mus.color }}>
                   <mus.icon size={19} strokeWidth={2} />
                 </div>
@@ -130,6 +138,20 @@ export default function Museums() {
                 </div>
               </button>
             ))}
+
+            <div className="museums__indicators" aria-label="Museum section indicators">
+              {museums.map((mus, i) => (
+                <button
+                  key={`indicator-${i}`}
+                  type="button"
+                  aria-label={`Show ${mus.name}`}
+                  aria-pressed={i === active}
+                  className={`museum-indicator ${i === active ? "is-active" : ""}`}
+                  onClick={() => handleSelectMuseum(i)}
+                  style={{ background: i === active ? "var(--terracotta)" : "rgba(41, 62, 60, 0.22)" }}
+                />
+              ))}
+            </div>
           </div>
 
           <div className="museum-panel" key={active}>
