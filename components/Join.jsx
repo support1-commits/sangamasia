@@ -5,7 +5,7 @@ import { GraduationCap, Microscope, Handshake, Wheat, FileText, Send, Users } fr
 import { useSiteLanguage } from "../lib/siteLanguage";
 
 const pdfs = {
-  membership: "/pdf/Membership Form.pdf",
+  membership: "/pdf/Membership form SANGAM.pdf",
   fellowship: [
     "/pdf/SANGAM_FELLOWSHIP FORM.pdf",
     "/pdf/SANGAM_Fellowship Guidelines.pdf",

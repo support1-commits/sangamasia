@@ -186,9 +186,49 @@ const galleryItems = {
   ],
 };
 
+const latestUpdatesSlides = [
+  {
+    title: "REPORT LAUNCH",
+    kicker: "The Vrihi Foundation invites you to",
+    headline: "Framework for\nHeritage Produce of India",
+    body1: "The report enables a first-of-its-kind operational framework to support India’s heritage and GI-tagged agricultural products. It brings a specific policy lens that recognises the potential of such commodities and identifies the specific intervention these value chains need.",
+    body2: "The report is outcome of the study by Vrihi Foundation with the support of The Asia Foundation, and in partnership with ekgaon Technologies. The report outlines a national playbook which will offer guidance on realising the potential of heritage agriculture.",
+    dateLabel: "28 September 2026",
+    dateSub: "Monday",
+    time: "10:00 am to 04:30 pm",
+    venue: "Silver Oak",
+    venueSub: "India Habitat Centre,",
+    venueSub2: "New Delhi",
+    invitation: "BY INVITATION ONLY",
+    link: "/about",
+    cta: "Read more",
+    image: "/latest_updates/latest_updates.jpeg",
+    imageAlt: "Latest Updates poster for Vrihi Foundation report launch",
+  },
+  {
+    title: "HERITAGE IN ACTION",
+    kicker: "Community-led agricultural memory",
+    headline: "From seed stewardship\nto living traditions",
+    body1: "SANGAM brings together farmers, museums, and researchers to document and celebrate the agricultural practices that sustain biodiversity, culture, and local knowledge across South Asia.",
+    body2: "The network strengthens collaboration across eight nations, connecting heritage institutions and field practitioners through shared learning, training, and public engagement.",
+    dateLabel: "Regional programme",
+    dateSub: "Across South Asia",
+    time: "Open collaborations and exhibitions",
+    venue: "SANGAM network",
+    venueSub: "Museums, farms, and partners",
+    venueSub2: "United for heritage",
+    invitation: "COMMUNITY PARTNERSHIP",
+    link: "/programmes",
+    cta: "View programme",
+    image: "/latest_updates/latest_updates.jpeg",
+    imageAlt: "SANGAM heritage programme and partner collaboration",
+  },
+];
+
 export default function Hero() {
   const [idx, setIdx] = useState(0);
   const [fade, setFade] = useState(false);
+  const [latestIdx] = useState(0);
   const [galleryVisible, setGalleryVisible] = useState(false);
   const locale = useSiteLanguage();
 
@@ -209,6 +249,7 @@ export default function Hero() {
   const localizedQuickLinks = quickLinks[locale] ?? quickLinks.en;
   const localizedGalleryItems = galleryItems[locale] ?? galleryItems.en;
   const h = localizedHeadlines[idx];
+  const latestSlide = latestUpdatesSlides[latestIdx];
 
   return (
     <>
@@ -217,11 +258,6 @@ export default function Hero() {
 
         <div className="hero__inner">
           <div>
-            <div className="tag-badge terracotta">
-              <span className="tag-badge__dot" />
-              {localizedCopy.badge}
-            </div>
-
             <h1 className="hero__headline" style={{ opacity: fade ? 0 : 1, transition: "opacity 0.35s ease" }}>
               {h.l1}<br /><em>{h.l2}</em>
             </h1>
@@ -262,6 +298,78 @@ export default function Hero() {
                   {locale === "hi" ? "उनकी कहानी पढ़ें" : locale === "bn" ? "তার গল্প পড়ুন" : "Read their story"} <ArrowRight size={14} strokeWidth={2} />
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="hero hero--latest">
+        <div className="hero__latest-shell">
+          <div className="hero__latest-copy">
+            <div className="hero__latest-header-row">
+              <div className="tag-badge terracotta hero__latest-tag">
+                <span className="tag-badge__dot" />
+                Latest Updates
+              </div>
+            </div>
+
+            <div
+              key={`${latestSlide.title}-${latestIdx}`}
+              className="hero__latest-poster-copy"
+            >
+              <div className="hero__latest-exclusive">EXCLUSIVE</div>
+              <p className="hero__latest-kicker">{latestSlide.kicker}</p>
+              <h2 className="hero__latest-title hero__latest-title--poster">{latestSlide.title}</h2>
+              <h3 className="hero__latest-subhead">{latestSlide.headline.split("\n").map((line, index) => (
+                <span key={line + index}>{line}{index < latestSlide.headline.split("\n").length - 1 ? <><br /></> : null}</span>
+              ))}</h3>
+
+              <div className="hero__latest-body">
+                <p>{latestSlide.body1}</p>
+                <p>{latestSlide.body2}</p>
+              </div>
+
+              <div className="hero__latest-meta-grid">
+                <div className="hero__latest-meta-item">
+                  <div className="hero__latest-meta-icon">📅</div>
+                  <div>
+                    <strong>{latestSlide.dateLabel}</strong>
+                    <span>{latestSlide.dateSub}</span>
+                    <small>{latestSlide.time}</small>
+                  </div>
+                </div>
+                <div className="hero__latest-meta-item">
+                  <div className="hero__latest-meta-icon">📍</div>
+                  <div>
+                    <strong>{latestSlide.venue}</strong>
+                    <span>{latestSlide.venueSub}</span>
+                    <small>{latestSlide.venueSub2}</small>
+                  </div>
+                </div>
+              </div>
+
+              <div className="hero__latest-invite">{latestSlide.invitation}</div>
+            </div>
+          </div>
+
+          <div className="hero__latest-visual">
+            <div className="hero__latest-slider">
+              {latestUpdatesSlides.map((slide, index) => (
+                <div
+                  key={`${slide.title}-${index}`}
+                  className={`hero__latest-slide ${index === latestIdx ? "is-active" : ""}`}
+                >
+                  <div className="hero__latest-image-wrap">
+                    <Image
+                      src={slide.image}
+                      alt={slide.imageAlt}
+                      fill
+                      priority={index === 0}
+                      className="hero__latest-image"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

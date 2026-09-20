@@ -96,6 +96,14 @@ export default function Museums() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    const autoRotate = setInterval(() => {
+      setActive((current) => (current + 1) % museums.length);
+    }, 5000);
+
+    return () => clearInterval(autoRotate);
+  }, []);
+
   const m = museums[active];
 
   return (

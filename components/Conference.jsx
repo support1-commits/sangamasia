@@ -83,6 +83,44 @@ const days = [
   },
 ];
 
+const agendaImageSets = {
+  "Day 1": [
+    "/conf/day1/1.JPG",
+    "/conf/day1/2.JPG",
+    "/conf/day1/3.JPG",
+    "/conf/day1/4.JPG",
+  ],
+  "Day 2": [
+    "/conf/day2/1.JPG",
+    "/conf/day2/2.JPG",
+    "/conf/day2/3.JPG",
+    "/conf/day2/4.JPG",
+  ],
+  "Day 3": [
+    "/conf/day3/1.JPG",
+    "/conf/day3/2.JPG",
+    "/conf/day3/3.JPG",
+    "/conf/day3/4.JPG",
+  ],
+  "Day 4": [
+    "/conf/day4/1.JPG",
+    "/conf/day4/2.jpeg",
+    "/conf/day4/3.jpeg",
+  ],
+  "Day 5": [
+    "/conf/day5/1.jpeg",
+    "/conf/day5/2.jpeg",
+    "/conf/day5/3.jpeg",
+    "/conf/day5/4.jpeg",
+  ],
+  "Day 6": [
+    "/conf/day6/1.jpeg",
+    "/conf/day6/2.jpeg",
+    "/conf/day6/3.jpeg",
+    "/conf/day6/4.jpeg",
+  ],
+};
+
 const outcomes = [
   "Facilitate upgradation of agricultural museums and heritage centres across the country, by connecting museum and digital technology professionals with interested agricultural institutions and museums.",
   "Connect social scientists and museum professionals to agricultural institutions and universities at a time when the agriculture sector is largely staffed by scientists.",
@@ -195,6 +233,7 @@ export default function Conference() {
   const [activeDay, setActiveDay] = useState(0);
   const [openDay, setOpenDay] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+  const [agendaLightbox, setAgendaLightbox] = useState(null);
   const locale = useSiteLanguage();
   const copy = {
     en: { tag: "Flagship Conference · CIMA 2023", title: ["Agriculture:", "A Living Tradition"], sub: "20th Congrès International des Musées d'Agriculture — held for the first time in Asia and in India, 13–18 October 2023.", label: "Flagship Conference", heading: ["Where Heritage", "Finds Its Voice"], body1: "SANGAM members organised the 20th CIMA (Congress of International Agricultural Museum) for the first time in Asia and in India, with two host institutions, on 13, 14 and 15 October 2023 at Shoolini University, Solan, Himachal Pradesh, and 16, 17, and 18 October at Punjab Agricultural University, Ludhiana, Punjab. PAU is home to the oldest agricultural museum in Punjab, the Museum of Social History of Punjab. It was a 6 days conference attended by farmers, educators, activists, historians, professors, foreign delegates, students who actively participated in this conference.", body2: "The CIMA conferences are a regular international Triennial congress dedicated globally to agricultural museums, living history and rural heritage. The purpose of this conference is to educate people through Agricultural Museums about the significance of agriculture in human society, to explain how agriculture has evolved over the years and to facilitate the dialogue between museums across the globe about agricultural histories and discoveries.", body3: "The 20th CIMA conference focused on how Agriculture maintains itself as a living tradition by adapting to the past traditions with present innovations, observations and experience to create changes for sustainable future. Further, there was a discussion on agricultural museum and its significant educational role in alignment with research institutes and universities. An effort of CIMA 23' is to scale up the documentation and communication of the rich tradition and living adaptations of Agriculture in India and facilitate the process by seeking synergies with organizations and individual that shares a common goal." },
@@ -217,6 +256,7 @@ export default function Conference() {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         setSelectedImageIndex(null);
+        setAgendaLightbox(null);
       }
     };
 
@@ -228,6 +268,16 @@ export default function Conference() {
   const closeImage = () => setSelectedImageIndex(null);
   const showPreviousImage = () => setSelectedImageIndex((current) => current === null ? current : (current - 1 + conferenceGalleryImages.length) % conferenceGalleryImages.length);
   const showNextImage = () => setSelectedImageIndex((current) => current === null ? current : (current + 1) % conferenceGalleryImages.length);
+  const openAgendaImage = (dayLabel, index) => setAgendaLightbox({ dayLabel, images: agendaImageSets[dayLabel] || [], index });
+  const closeAgendaImage = () => setAgendaLightbox(null);
+  const showPreviousAgendaImage = () => setAgendaLightbox((current) => {
+    if (!current || !current.images.length) return null;
+    return { ...current, index: (current.index - 1 + current.images.length) % current.images.length };
+  });
+  const showNextAgendaImage = () => setAgendaLightbox((current) => {
+    if (!current || !current.images.length) return null;
+    return { ...current, index: (current.index + 1) % current.images.length };
+  });
 
   return (
     <section className="conference" ref={ref}>
@@ -329,6 +379,25 @@ export default function Conference() {
                           </div>
                         </div>
                       ))}
+
+                      {agendaImageSets[d.label] && (
+                        <div className="agenda__day-gallery-wrap">
+                          <div className="agenda__day-gallery-label">Gallery</div>
+                          <div className="agenda__day-gallery" aria-label={`${d.label} gallery`}>
+                            {agendaImageSets[d.label].map((src, imageIndex) => (
+                              <button
+                                key={`${d.label}-${imageIndex}`}
+                                type="button"
+                                className="agenda__day-gallery-btn"
+                                onClick={() => openAgendaImage(d.label, imageIndex)}
+                                aria-label={`Open ${d.label} image ${imageIndex + 1}`}
+                              >
+                                <img src={src} alt={`${d.label} event image ${imageIndex + 1}`} loading="lazy" />
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -439,6 +508,17 @@ export default function Conference() {
               <button type="button" className="conference-gallery-lightbox__nav conference-gallery-lightbox__nav--prev" onClick={showPreviousImage} aria-label="Previous image">‹</button>
               <img src={conferenceGalleryImages[selectedImageIndex].src} alt={conferenceGalleryImages[selectedImageIndex].alt} />
               <button type="button" className="conference-gallery-lightbox__nav conference-gallery-lightbox__nav--next" onClick={showNextImage} aria-label="Next image">›</button>
+            </div>
+          </div>
+        )}
+
+        {agendaLightbox && (
+          <div className="conference-gallery-lightbox" onClick={closeAgendaImage} role="dialog" aria-modal="true">
+            <div className="conference-gallery-lightbox__panel" onClick={(event) => event.stopPropagation()}>
+              <button type="button" className="conference-gallery-lightbox__close" onClick={closeAgendaImage} aria-label="Close day image preview">×</button>
+              <button type="button" className="conference-gallery-lightbox__nav conference-gallery-lightbox__nav--prev" onClick={showPreviousAgendaImage} aria-label="Previous agenda image">‹</button>
+              <img src={agendaLightbox.images[agendaLightbox.index]} alt={`${agendaLightbox.dayLabel} preview`} />
+              <button type="button" className="conference-gallery-lightbox__nav conference-gallery-lightbox__nav--next" onClick={showNextAgendaImage} aria-label="Next agenda image">›</button>
             </div>
           </div>
         )}
