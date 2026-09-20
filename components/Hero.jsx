@@ -249,7 +249,8 @@ export default function Hero() {
   const localizedQuickLinks = quickLinks[locale] ?? quickLinks.en;
   const localizedGalleryItems = galleryItems[locale] ?? galleryItems.en;
   const h = localizedHeadlines[idx];
-  const latestSlide = latestUpdatesSlides[latestIdx];
+  const latestSlide = latestUpdatesSlides[0] ?? null;
+  const visibleLatestSlides = latestUpdatesSlides.slice(0, 1);
 
   return (
     <>
@@ -305,56 +306,16 @@ export default function Hero() {
 
       <section className="hero hero--latest">
         <div className="hero__latest-shell">
-          <div className="hero__latest-copy">
-            <div className="hero__latest-header-row">
-              <div className="tag-badge terracotta hero__latest-tag">
-                <span className="tag-badge__dot" />
-                Latest Updates
-              </div>
-            </div>
-
-            <div
-              key={`${latestSlide.title}-${latestIdx}`}
-              className="hero__latest-poster-copy"
-            >
-              <div className="hero__latest-exclusive">EXCLUSIVE</div>
-              <p className="hero__latest-kicker">{latestSlide.kicker}</p>
-              <h2 className="hero__latest-title hero__latest-title--poster">{latestSlide.title}</h2>
-              <h3 className="hero__latest-subhead">{latestSlide.headline.split("\n").map((line, index) => (
-                <span key={line + index}>{line}{index < latestSlide.headline.split("\n").length - 1 ? <><br /></> : null}</span>
-              ))}</h3>
-
-              <div className="hero__latest-body">
-                <p>{latestSlide.body1}</p>
-                <p>{latestSlide.body2}</p>
-              </div>
-
-              <div className="hero__latest-meta-grid">
-                <div className="hero__latest-meta-item">
-                  <div className="hero__latest-meta-icon">📅</div>
-                  <div>
-                    <strong>{latestSlide.dateLabel}</strong>
-                    <span>{latestSlide.dateSub}</span>
-                    <small>{latestSlide.time}</small>
-                  </div>
-                </div>
-                <div className="hero__latest-meta-item">
-                  <div className="hero__latest-meta-icon">📍</div>
-                  <div>
-                    <strong>{latestSlide.venue}</strong>
-                    <span>{latestSlide.venueSub}</span>
-                    <small>{latestSlide.venueSub2}</small>
-                  </div>
-                </div>
-              </div>
-
-              <div className="hero__latest-invite">{latestSlide.invitation}</div>
+          <div className="hero__latest-header-row hero__latest-header-row--full">
+            <div className="tag-badge terracotta hero__latest-tag">
+              <span className="tag-badge__dot" />
+              Latest Updates
             </div>
           </div>
 
-          <div className="hero__latest-visual">
+          <div className="hero__latest-visual hero__latest-visual--full">
             <div className="hero__latest-slider">
-              {latestUpdatesSlides.map((slide, index) => (
+              {visibleLatestSlides.map((slide, index) => (
                 <div
                   key={`${slide.title}-${index}`}
                   className={`hero__latest-slide ${index === latestIdx ? "is-active" : ""}`}
@@ -363,8 +324,10 @@ export default function Hero() {
                     <Image
                       src={slide.image}
                       alt={slide.imageAlt}
-                      fill
+                      width={1400}
+                      height={900}
                       priority={index === 0}
+                      sizes="(max-width: 768px) 100vw, 1200px"
                       className="hero__latest-image"
                     />
                   </div>
